@@ -3,7 +3,7 @@ import { fromValue } from '../from-value';
 
 describe(fromValue.name, () => {
     it('should return correctly', () => {
-        const fromValueFunction = fromValue(10);
+        let fromValueFunction = fromValue(10);
         expect(fromValueFunction).toBeTruthy();
         expect(fromValueFunction[MapFnClassId.type]).toEqual(
             TransformationType.FromValue
@@ -12,8 +12,8 @@ describe(fromValue.name, () => {
     });
 
     it('should map correctly', () => {
-        const fromValueFunction = fromValue(10);
-        const result = fromValueFunction[MapFnClassId.fn]();
+        let fromValueFunction = fromValue(10);
+        let result = fromValueFunction[MapFnClassId.fn]();
         expect(result).toEqual(10);
     });
 });
