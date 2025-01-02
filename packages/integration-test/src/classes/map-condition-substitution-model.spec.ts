@@ -22,7 +22,7 @@ describe('Map - Condition/Substitutions with Models', () => {
         foo?: FooDto;
     }
 
-    const mapper = createMapper({ strategyInitializer: classes() });
+    let mapper = createMapper({ strategyInitializer: classes() });
 
     createMap(mapper, Foo, FooDto);
 
@@ -37,10 +37,10 @@ describe('Map - Condition/Substitutions with Models', () => {
             )
         );
 
-        const bar = new Bar();
+        let bar = new Bar();
         bar.foo = new Foo();
 
-        const dto = mapper.map(bar, Bar, BarDto);
+        let dto = mapper.map(bar, Bar, BarDto);
         expect(dto.foo).toEqual(new FooDto());
     });
 
@@ -52,10 +52,10 @@ describe('Map - Condition/Substitutions with Models', () => {
             forMember((d) => d.foo, nullSubstitution(undefined))
         );
 
-        const bar = new Bar();
+        let bar = new Bar();
         bar.foo = new Foo();
 
-        const dto = mapper.map(bar, Bar, BarDto);
+        let dto = mapper.map(bar, Bar, BarDto);
         expect(dto.foo).toEqual(new FooDto());
     });
 
@@ -67,10 +67,10 @@ describe('Map - Condition/Substitutions with Models', () => {
             forMember((d) => d.foo, undefinedSubstitution(null))
         );
 
-        const bar = new Bar();
+        let bar = new Bar();
         bar.foo = new Foo();
 
-        const dto = mapper.map(bar, Bar, BarDto);
+        let dto = mapper.map(bar, Bar, BarDto);
         expect(dto.foo).toEqual(new FooDto());
     });
 });
