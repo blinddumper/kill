@@ -11,16 +11,16 @@ import { CartItemDto } from './dtos/cart-item.dto';
 import { CartItem, Item } from './models/cart-item';
 
 describe('Map - ForSelf', () => {
-    const mapper = createMapper({
+    let mapper = createMapper({
         strategyInitializer: classes(),
         namingConventions: new CamelCaseNamingConvention(),
     });
 
-    const item = new Item();
+    let item = new Item();
     item.name = 'item1';
     item.price = 123;
     item.stock = 456;
-    const cartItem = new CartItem();
+    let cartItem = new CartItem();
     cartItem.item = item;
     cartItem.quantity = 10;
 
@@ -36,7 +36,7 @@ describe('Map - ForSelf', () => {
             forSelf(Item, (src) => src.item)
         );
 
-        const dto = mapper.map(cartItem, CartItem, CartItemDto);
+        let dto = mapper.map(cartItem, CartItem, CartItemDto);
         expect(dto.name).toEqual(item.name);
         expect(dto.price).toEqual(item.price);
         expect(dto.quantity).toEqual(cartItem.quantity);
@@ -44,7 +44,7 @@ describe('Map - ForSelf', () => {
     });
 
     it('should map with existing mapping forSelf', () => {
-        const mapping = createMap(mapper, Item, CartItemDto);
+        let mapping = createMap(mapper, Item, CartItemDto);
         createMap(
             mapper,
             CartItem,
@@ -52,7 +52,7 @@ describe('Map - ForSelf', () => {
             forSelf(mapping, (src) => src.item)
         );
 
-        const dto = mapper.map(cartItem, CartItem, CartItemDto);
+        let dto = mapper.map(cartItem, CartItem, CartItemDto);
         expect(dto.name).toEqual(item.name);
         expect(dto.price).toEqual(item.price);
         expect(dto.quantity).toEqual(cartItem.quantity);
@@ -68,7 +68,7 @@ describe('Map - ForSelf', () => {
             forMember((d) => d.name, fromValue('override name'))
         );
 
-        const dto = mapper.map(cartItem, CartItem, CartItemDto);
+        let dto = mapper.map(cartItem, CartItem, CartItemDto);
         expect(dto.name).toEqual('override name');
         expect(dto.price).toEqual(item.price);
         expect(dto.quantity).toEqual(cartItem.quantity);
@@ -84,7 +84,7 @@ describe('Map - ForSelf', () => {
             forSelf(Item, (src) => src.item)
         );
 
-        const dto = mapper.map(cartItem, CartItem, CartItemDto);
+        let dto = mapper.map(cartItem, CartItem, CartItemDto);
         expect(dto.name).toEqual('override name');
         expect(dto.price).toEqual(item.price);
         expect(dto.quantity).toEqual(cartItem.quantity);
