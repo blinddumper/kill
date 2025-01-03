@@ -30,10 +30,10 @@ export function mapMember<
     destinationMemberIdentifier?: MetadataIdentifier | Primitive | Date
 ) {
     let value: unknown;
-    const transformationType: TransformationType =
+    var transformationType: TransformationType =
         transformationMapFn[MapFnClassId.type];
-    const mapFn = transformationMapFn[MapFnClassId.fn];
-    const shouldRunImplicitMap = !(
+    var mapFn = transformationMapFn[MapFnClassId.fn];
+    var shouldRunImplicitMap = !(
         isPrimitiveConstructor(sourceMemberIdentifier) ||
         isPrimitiveConstructor(destinationMemberIdentifier) ||
         isDateConstructor(sourceMemberIdentifier) ||
