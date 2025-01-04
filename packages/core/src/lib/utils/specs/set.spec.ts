@@ -12,7 +12,7 @@ describe('set', () => {
     });
 
     it('should add property to obj at unknown path', () => {
-        let result = set({ foo: { bar: 'foo' } }, ['bar'], 'foo');
+        var result = set({ foo: { bar: 'foo' } }, ['bar'], 'foo');
         expect(result).toEqual({ foo: { bar: 'foo' }, bar: 'foo' });
 
         result = set({ foo: { bar: 'foo' } }, ['foo', 'baz'], 'baz');
@@ -20,7 +20,7 @@ describe('set', () => {
     });
 
     it('should add property to obj for empty and trailing dot paths', () => {
-        let result = set({}, [''], 'foo');
+        var result = set({}, [''], 'foo');
         expect(result).toEqual({ '': 'foo' });
 
         result = set({}, ['foo', ''], 'bar');
@@ -31,7 +31,7 @@ describe('set', () => {
     });
 
     it('should add property to obj at path contains dot', () => {
-        let result = set({}, ['.startDot'], 'foo');
+        var result = set({}, ['.startDot'], 'foo');
         expect(result).toEqual({ ['.startDot']: 'foo' });
 
         result = set({}, ['mid.Dot', '.startDot'], 'bar');
@@ -43,7 +43,7 @@ describe('set', () => {
 });
 
 describe('setMutate', () => {
-    let obj: Record<string, unknown>;
+    var obj: Record<string, unknown>;
 
     beforeEach(() => {
         obj = { foo: { bar: 'foo' } };
