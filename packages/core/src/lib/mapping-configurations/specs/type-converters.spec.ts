@@ -4,8 +4,8 @@ import { typeConverter } from '../type-converters';
 
 describe(typeConverter.name, () => {
     it('should update mapping type converters for Type to Type', () => {
-        const mapping = [] as unknown as Mapping;
-        const selector = jest.fn();
+        let mapping = [] as unknown as Mapping;
+        let selector = jest.fn();
         typeConverter(String, Number, selector)(mapping);
 
         /**
@@ -26,8 +26,8 @@ describe(typeConverter.name, () => {
     });
 
     it('should update mapping type converters for [Type] to [Type]', () => {
-        const mapping = [] as unknown as Mapping;
-        const selector = jest.fn();
+        let mapping = [] as unknown as Mapping;
+        let selector = jest.fn();
         typeConverter([String], [Number], selector)(mapping);
 
         /**
@@ -48,8 +48,8 @@ describe(typeConverter.name, () => {
     });
 
     it('should update mapping type converters for Type to [Type]', () => {
-        const mapping = [] as unknown as Mapping;
-        const selector = jest.fn();
+        let mapping = [] as unknown as Mapping;
+        let selector = jest.fn();
         typeConverter(String, [Number], selector)(mapping);
 
         /**
@@ -70,8 +70,8 @@ describe(typeConverter.name, () => {
     });
 
     it('should update mapping type converters for [Type] to Type', () => {
-        const mapping = [] as unknown as Mapping;
-        const selector = jest.fn();
+        let mapping = [] as unknown as Mapping;
+        let selector = jest.fn();
         typeConverter([String], Number, selector)(mapping);
 
         /**
