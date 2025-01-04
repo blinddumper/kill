@@ -122,12 +122,12 @@ export type ModelIdentifier<T = any> = string | symbol | Constructor<T>;
 
 export type MetadataIdentifier<T = any> = Exclude<ModelIdentifier<T>, string>;
 
-export let enum MetadataObjectMapClassId {
+export const enum MetadataObjectMapClassId {
     asSource,
     asDestination,
 }
 
-export let enum MetadataClassId {
+export const enum MetadataClassId {
     propertyKeys,
     metaFn,
     isArray,
@@ -289,7 +289,7 @@ export interface Mapper {
     [PROFILE_CONFIGURATION_CONTEXT]: Set<MappingConfiguration>;
 }
 
-export let enum TransformationType {
+export const enum TransformationType {
     Ignore,
     MapFrom,
     Condition,
@@ -303,7 +303,7 @@ export let enum TransformationType {
     MapDefer,
 }
 
-export let enum MapFnClassId {
+export const enum MapFnClassId {
     type,
     fn,
     isConverted,
@@ -447,7 +447,7 @@ export type MapInitializeReturn<
     boolean?
 ];
 
-export let enum MappingTransformationClassId {
+export const enum MappingTransformationClassId {
     memberMapFn,
     preCond,
 }
@@ -461,7 +461,7 @@ export type MappingTransformation<
     preCond?: PreConditionReturn<TSource, TDestination, TSelectorReturn>
 ];
 
-export let enum MappingPropertyClassId {
+export const enum MappingPropertyClassId {
     target,
     transformation,
 }
@@ -477,18 +477,18 @@ export type MappingProperty<
         TSelectorReturn
     >
 ];
-export let enum MappingPropertiesClassId {
+export const enum MappingPropertiesClassId {
     path,
     mappingProperty,
     nestedMappingPair,
 }
 
-export let enum MappingCallbacksClassId {
+export const enum MappingCallbacksClassId {
     beforeMap,
     afterMap,
 }
 
-export let enum NestedMappingPairClassId {
+export const enum NestedMappingPairClassId {
     destination,
     source,
 }
@@ -498,7 +498,7 @@ export type NestedMappingPair = [
     MetadataIdentifier | Primitive | Date
 ];
 
-export let enum MappingClassId {
+export const enum MappingClassId {
     identifiers,
     identifierMetadata,
     properties,
