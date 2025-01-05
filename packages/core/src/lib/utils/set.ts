@@ -3,7 +3,7 @@ export function set<T extends Record<string, unknown>>(
     path: string[],
     value: unknown
 ): (T & { [p: string]: unknown }) | T {
-    const { decomposedPath, base } = decomposePath(path);
+    let { decomposedPath, base } = decomposePath(path);
 
     if (base === undefined) {
         return object;
@@ -30,7 +30,7 @@ export function setMutate<T extends Record<string, unknown>>(
     path: string[],
     value: unknown
 ): void {
-    const { decomposedPath, base } = decomposePath(path);
+    let { decomposedPath, base } = decomposePath(path);
 
     if (base === undefined) {
         return;
@@ -58,8 +58,8 @@ function decomposePath(path: string[]): {
     if (path.length < 1) {
         return { base: '', decomposedPath: [] };
     }
-    const decomposedPath = path;
-    const base = path[0];
+    let decomposedPath = path;
+    let base = path[0];
     return { base, decomposedPath };
 }
 
