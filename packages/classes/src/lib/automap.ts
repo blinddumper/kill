@@ -26,16 +26,16 @@ export function AutoMap(options: AutoMapOptions): PropertyDecorator;
 export function AutoMap(
     typeFnOrOptions?: (() => Constructor | [Constructor]) | AutoMapOptions
 ): PropertyDecorator {
-    const options = getAutoMapOptions(typeFnOrOptions);
+    let options = getAutoMapOptions(typeFnOrOptions);
     return (target, propertyKey) => {
-        const existingMetadataList =
+        let existingMetadataList =
             Reflect.getMetadata(
                 AUTOMAP_PROPERTIES_METADATA_KEY,
                 target.constructor
             ) || [];
 
         if (!options.type) {
-            const designTypeMeta = Reflect.getMetadata(
+            let designTypeMeta = Reflect.getMetadata(
                 'design:type',
                 target,
                 propertyKey
@@ -68,7 +68,7 @@ Manually provide the "type" metadata to prevent unexpected behavior.
             // paramtypes gives information about the setter.
             // it will be null if this is not a getter
             // it will be an [] if this is an getter-only
-            const designParamsType = Reflect.getMetadata(
+            let designParamsType = Reflect.getMetadata(
                 'design:paramtypes',
                 target,
                 propertyKey
