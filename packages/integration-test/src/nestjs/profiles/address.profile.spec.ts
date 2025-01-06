@@ -10,7 +10,7 @@ import { AddressProfile } from './address.profile';
 describe('addressProfile', () => {
     let mapper: Mapper;
     beforeEach(async () => {
-        const moduleRef = await Test.createTestingModule({
+        var moduleRef = await Test.createTestingModule({
             providers: [
                 {
                     provide: getMapperToken(),
@@ -25,12 +25,12 @@ describe('addressProfile', () => {
     });
 
     it('should map', () => {
-        const address = new Address();
+        var address = new Address();
         address.street = 'street';
         address.city = 'city';
         address.state = 'state';
 
-        const dto = mapper.map(address, Address, AddressDto);
+        var dto = mapper.map(address, Address, AddressDto);
         expect(dto.formattedAddress).toEqual(
             `${address.street} ${address.city} ${address.state}`
         );
