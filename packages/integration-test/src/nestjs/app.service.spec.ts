@@ -15,7 +15,7 @@ describe(AppService.name, () => {
     let service: AppService;
 
     beforeAll(async () => {
-        const app = await Test.createTestingModule({
+        var app = await Test.createTestingModule({
             providers: [
                 AppService,
                 {
