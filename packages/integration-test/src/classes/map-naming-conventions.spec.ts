@@ -32,7 +32,7 @@ import { getPascalUser, getSnakeUser, getUser } from './utils/get-user';
 
 describe('Map - Naming Conventions', () => {
     describe('Pascal -> Camel', () => {
-        let mapper = createMapper({
+        const mapper = createMapper({
             strategyInitializer: classes(),
             namingConventions: {
                 source: new PascalCaseNamingConvention(),
@@ -50,8 +50,8 @@ describe('Map - Naming Conventions', () => {
             addProfile(mapper, pascalBioProfile);
             addProfile(mapper, pascalUserProfile);
 
-            let user = getPascalUser();
-            let dto = mapper.map(user, PascalUser, UserDto);
+            const user = getPascalUser();
+            const dto = mapper.map(user, PascalUser, UserDto);
             expect(dto.first).toEqual(user.FirstName);
             expect(dto.last).toEqual(user.LastName);
             expect(dto.full).toEqual(user.FirstName + ' ' + user.LastName);
@@ -61,7 +61,7 @@ describe('Map - Naming Conventions', () => {
     });
 
     describe('Camel -> Pascal', () => {
-        let mapper = createMapper({
+        const mapper = createMapper({
             strategyInitializer: classes(),
             namingConventions: {
                 source: new CamelCaseNamingConvention(),
@@ -79,8 +79,8 @@ describe('Map - Naming Conventions', () => {
             addProfile(mapper, bioProfile);
             addProfile(mapper, userProfile);
 
-            let user = getUser();
-            let dto = mapper.map(user, User, PascalUserDto);
+            const user = getUser();
+            const dto = mapper.map(user, User, PascalUserDto);
             expect(dto.First).toEqual(user.firstName);
             expect(dto.Last).toEqual(user.lastName);
             expect(dto.Full).toEqual(user.firstName + ' ' + user.lastName);
@@ -90,7 +90,7 @@ describe('Map - Naming Conventions', () => {
     });
 
     describe('Snake -> Camel', () => {
-        let mapper = createMapper({
+        const mapper = createMapper({
             strategyInitializer: classes(),
             namingConventions: {
                 source: new SnakeCaseNamingConvention(),
@@ -108,8 +108,8 @@ describe('Map - Naming Conventions', () => {
             addProfile(mapper, snakeBioProfile);
             addProfile(mapper, snakeUserProfile);
 
-            let user = getSnakeUser();
-            let dto = mapper.map(user, SnakeUser, UserDto);
+            const user = getSnakeUser();
+            const dto = mapper.map(user, SnakeUser, UserDto);
             expect(dto.first).toEqual(user.first_name);
             expect(dto.last).toEqual(user.last_name);
             expect(dto.full).toEqual(user.first_name + ' ' + user.last_name);
@@ -119,7 +119,7 @@ describe('Map - Naming Conventions', () => {
     });
 
     describe('Camel -> Snake', () => {
-        let mapper = createMapper({
+        const mapper = createMapper({
             strategyInitializer: classes(),
             namingConventions: {
                 source: new CamelCaseNamingConvention(),
@@ -137,8 +137,8 @@ describe('Map - Naming Conventions', () => {
             addProfile(mapper, bioProfile);
             addProfile(mapper, userProfile);
 
-            let user = getUser();
-            let dto = mapper.map(user, User, SnakeUserDto);
+            const user = getUser();
+            const dto = mapper.map(user, User, SnakeUserDto);
             expect(dto.first).toEqual(user.firstName);
             expect(dto.last).toEqual(user.lastName);
             expect(dto.full).toEqual(user.firstName + ' ' + user.lastName);
@@ -148,7 +148,7 @@ describe('Map - Naming Conventions', () => {
     });
 
     describe('Snake -> Pascal', () => {
-        let mapper = createMapper({
+        const mapper = createMapper({
             strategyInitializer: classes(),
             namingConventions: {
                 source: new SnakeCaseNamingConvention(),
@@ -166,8 +166,8 @@ describe('Map - Naming Conventions', () => {
             addProfile(mapper, snakeBioProfile);
             addProfile(mapper, snakeUserProfile);
 
-            let user = getSnakeUser();
-            let dto = mapper.map(user, SnakeUser, PascalUserDto);
+            const user = getSnakeUser();
+            const dto = mapper.map(user, SnakeUser, PascalUserDto);
             expect(dto.First).toEqual(user.first_name);
             expect(dto.Last).toEqual(user.last_name);
             expect(dto.Full).toEqual(user.first_name + ' ' + user.last_name);
@@ -177,7 +177,7 @@ describe('Map - Naming Conventions', () => {
     });
 
     describe('Pascal -> Snake', () => {
-        let mapper = createMapper({
+        const mapper = createMapper({
             strategyInitializer: classes(),
             namingConventions: {
                 source: new PascalCaseNamingConvention(),
@@ -195,8 +195,8 @@ describe('Map - Naming Conventions', () => {
             addProfile(mapper, pascalBioProfile);
             addProfile(mapper, pascalUserProfile);
 
-            let user = getPascalUser();
-            let dto = mapper.map(user, PascalUser, SnakeUserDto);
+            const user = getPascalUser();
+            const dto = mapper.map(user, PascalUser, SnakeUserDto);
             expect(dto.first).toEqual(user.FirstName);
             expect(dto.last).toEqual(user.LastName);
             expect(dto.full).toEqual(user.FirstName + ' ' + user.LastName);
@@ -206,7 +206,7 @@ describe('Map - Naming Conventions', () => {
     });
 
     // describe('No flattening', () => {
-    //     let mapper = createMapper({
+    //     const mapper = createMapper({
     //         strategyInitializer: classes(),
     //         namingConventions: {
     //             source: new CamelCaseNamingConvention(),
@@ -225,8 +225,8 @@ describe('Map - Naming Conventions', () => {
     //         addProfile(mapper, bioProfile);
     //         addProfile(mapper, userProfile);
     //
-    //         let user = getUser();
-    //         let dto = mapper.map(user, User, PascalUserDto);
+    //         const user = getUser();
+    //         const dto = mapper.map(user, User, PascalUserDto);
     //         console.log(dto);
     //     });
     // });
