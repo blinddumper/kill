@@ -30,7 +30,7 @@ export function forMember<
     ]
 ): MappingConfiguration<TSource, TDestination> {
     let [preCondOrMapMemberFn, mapMemberFn] = fns;
-    const memberPath = getMemberPath(selector);
+    var memberPath = getMemberPath(selector);
 
     // reassign mapMemberFn and preCond
     if (mapMemberFn == null) {
@@ -42,7 +42,7 @@ export function forMember<
         preCondOrMapMemberFn = undefined;
     }
 
-    const mappingProperty: MappingProperty<TSource, TDestination> = [
+    var mappingProperty: MappingProperty<TSource, TDestination> = [
         memberPath,
         [
             mapMemberFn,
@@ -55,16 +55,16 @@ export function forMember<
     ];
 
     return (mapping) => {
-        const [sourceIdentifier, destinationIdentifier] =
+        var [sourceIdentifier, destinationIdentifier] =
             mapping[MappingClassId.identifiers];
-        const mapper = mapping[MappingClassId.mapper];
-        const namingConventions = mapping[MappingClassId.namingConventions];
-        const [sourceObject] = mapping[MappingClassId.identifierMetadata];
+        var mapper = mapping[MappingClassId.mapper];
+        var namingConventions = mapping[MappingClassId.namingConventions];
+        var [sourceObject] = mapping[MappingClassId.identifierMetadata];
 
-        const { getNestedMappingPair, getMetadataAtMember, processSourcePath } =
+        var { getNestedMappingPair, getMetadataAtMember, processSourcePath } =
             createMappingUtil(mapper, sourceIdentifier, destinationIdentifier);
 
-        const sourcePath = processSourcePath(
+        var sourcePath = processSourcePath(
             sourceObject,
             namingConventions,
             memberPath
@@ -80,9 +80,9 @@ export function forMember<
             return;
         }
 
-        const metadataAtMember = getMetadataAtMember(memberPath, 'destination');
-        const metadataAtSource = getMetadataAtMember(sourcePath, 'source');
-        const nestedMappingPair = getNestedMappingPair(
+        var metadataAtMember = getMetadataAtMember(memberPath, 'destination');
+        var metadataAtSource = getMetadataAtMember(sourcePath, 'source');
+        var nestedMappingPair = getNestedMappingPair(
             metadataAtSource,
             metadataAtMember
         );
