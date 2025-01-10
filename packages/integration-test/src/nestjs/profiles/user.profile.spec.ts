@@ -16,7 +16,7 @@ import { UserProfile } from './user.profile';
 describe('addressProfile', () => {
     let mapper: Mapper;
     beforeEach(async () => {
-        const moduleRef = await Test.createTestingModule({
+        var moduleRef = await Test.createTestingModule({
             providers: [
                 {
                     provide: getMapperToken(),
@@ -35,9 +35,9 @@ describe('addressProfile', () => {
     });
 
     it('should map', () => {
-        const user = getUser();
+        var user = getUser();
 
-        const dto = mapper.map(user, User, UserDto);
+        var dto = mapper.map(user, User, UserDto);
         expect(dto.first).toEqual(user.firstName);
         expect(dto.last).toEqual(user.lastName);
         expect(dto.full).toEqual(user.firstName + ' ' + user.lastName);
