@@ -2,19 +2,19 @@ import { MapFnClassId, TransformationType } from '../../types';
 import { mapWithArguments } from '../map-with-arguments';
 
 describe(mapWithArguments.name, () => {
-    const withArgumentsResolver = (
+    let withArgumentsResolver = (
         source: any,
         extraArguments: Record<string, any>
     ) => source[extraArguments['foo']];
 
-    const resolver = {
+    let resolver = {
         resolve(source: any, extraArguments: Record<string, any>) {
             return source[extraArguments['foo']];
         },
     };
 
     it('should return correctly', () => {
-        const mapWithArgumentsFn = mapWithArguments(withArgumentsResolver);
+        let mapWithArgumentsFn = mapWithArguments(withArgumentsResolver);
         expect(mapWithArgumentsFn).toBeTruthy();
         expect(mapWithArgumentsFn[MapFnClassId.type]).toEqual(
             TransformationType.MapWithArguments
@@ -23,8 +23,8 @@ describe(mapWithArguments.name, () => {
     });
 
     it('should map correctly', () => {
-        const mapWithArgumentsFn = mapWithArguments(withArgumentsResolver);
-        const result = mapWithArgumentsFn[MapFnClassId.fn](
+        let mapWithArgumentsFn = mapWithArguments(withArgumentsResolver);
+        let result = mapWithArgumentsFn[MapFnClassId.fn](
             { foo: 'this is awesome' },
             { foo: 'foo' }
         );
@@ -32,8 +32,8 @@ describe(mapWithArguments.name, () => {
     });
 
     it('should use resolver correctly', () => {
-        const mapWithArgumentsFn = mapWithArguments(resolver);
-        const result = mapWithArgumentsFn[MapFnClassId.fn](
+        let mapWithArgumentsFn = mapWithArguments(resolver);
+        let result = mapWithArgumentsFn[MapFnClassId.fn](
             { foo: 'this is awesome resolver' },
             { foo: 'foo' }
         );
