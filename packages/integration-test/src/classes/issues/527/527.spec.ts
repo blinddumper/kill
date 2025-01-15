@@ -25,7 +25,7 @@ export class Destination {
 }
 
 describe('Issue 527', () => {
-    const mapper = createMapper({
+    let mapper = createMapper({
         strategyInitializer: classes(),
         namingConventions: {
             source: new SnakeCaseNamingConvention(),
@@ -43,10 +43,10 @@ describe('Issue 527', () => {
                 mapFrom((s) => s.inspection_order_status_id)
             )
         );
-        const source = new Source();
+        let source = new Source();
         source.inspection_order_status = 1;
         source.inspection_order_status_id = 2;
-        const destination = mapper.map(source, Source, Destination);
+        let destination = mapper.map(source, Source, Destination);
 
         expect(destination.inspectionOrderStatus).toEqual(1);
         expect(destination.inspectionOrderStatusId).toEqual(2);
