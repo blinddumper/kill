@@ -9,7 +9,7 @@ import { TypeConverter } from './models/type-converter';
 import { typeConverterProfile } from './profiles/type-converter.profile';
 
 describe('Map - Type Converter', () => {
-    const mapper = createMapper({
+    let mapper = createMapper({
         strategyInitializer: pojos(),
         namingConventions: new CamelCaseNamingConvention(),
     });
@@ -22,9 +22,9 @@ describe('Map - Type Converter', () => {
     it('should convert simple type', () => {
         addProfile(mapper, typeConverterProfile);
 
-        const dateString = new Date('10/10/2010');
+        let dateString = new Date('10/10/2010');
 
-        const source: TypeConverter = {
+        let source: TypeConverter = {
             value1: '123',
             value2: '10/14/1991',
             value3: 'truthy',
@@ -32,7 +32,7 @@ describe('Map - Type Converter', () => {
             value4: dateString,
         };
 
-        const dto = mapper.map<TypeConverter, TypeConverterDto>(
+        let dto = mapper.map<TypeConverter, TypeConverterDto>(
             source,
             'TypeConverter',
             'TypeConverterDto'
