@@ -8,7 +8,7 @@ import {
     TypeConverter,
 } from '../models/type-converter';
 
-export let typeConverterProfile: MappingProfile = (mapper) => {
+export const typeConverterProfile: MappingProfile = (mapper) => {
     createTypeConverterMetadata();
     createTypeConverterDtoMetadata();
 
