@@ -42,7 +42,7 @@ describe('Issue 396', () => {
         another?: string;
     }
 
-    let mapper = createMapper({
+    const mapper = createMapper({
         strategyInitializer: classes(),
         namingConventions: new CamelCaseNamingConvention(),
     });
@@ -52,7 +52,7 @@ describe('Issue 396', () => {
     });
 
     it('should map properly', () => {
-        let mapping = createMap(
+        const mapping = createMap(
             mapper,
             Source,
             Destination,
@@ -64,10 +64,10 @@ describe('Issue 396', () => {
 
         createMap(mapper, SourceChild, DestinationChild, extend(mapping));
 
-        let options = new NestedOptionalClass();
+        const options = new NestedOptionalClass();
         options.name = 'name';
 
-        let input1 = new SourceChild();
+        const input1 = new SourceChild();
         input1.description = 'description';
         input1.options = options;
 
@@ -75,7 +75,7 @@ describe('Issue 396', () => {
             mapper.map(input1, SourceChild, DestinationChild)
         ).not.toThrow();
 
-        let input2 = new SourceChild();
+        const input2 = new SourceChild();
         input2.description = 'description 2';
 
         expect(() =>
