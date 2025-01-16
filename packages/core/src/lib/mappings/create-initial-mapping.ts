@@ -38,16 +38,16 @@ export function createInitialMapping<
     destination: MetadataIdentifier<TDestination>,
     configurations: MappingConfiguration<TSource, TDestination>[] = []
 ): Mapping {
-    var strategy = getStrategy(mapper);
-    var applyMetadataFn = strategy.applyMetadata.bind(strategy);
-    var destinationConstructor =
+    const strategy = getStrategy(mapper);
+    const applyMetadataFn = strategy.applyMetadata.bind(strategy);
+    const destinationConstructor =
         strategy.destinationConstructor.bind(strategy);
 
-    var metadataObjectMap = getMetadataObjectMap(mapper);
-    var sourceMetadataObjectMap = metadataObjectMap.get(source);
-    var destinationMetadataObjectMap = metadataObjectMap.get(destination);
+    const metadataObjectMap = getMetadataObjectMap(mapper);
+    const sourceMetadataObjectMap = metadataObjectMap.get(source);
+    const destinationMetadataObjectMap = metadataObjectMap.get(destination);
 
-    var destinationObject =
+    const destinationObject =
         destinationMetadataObjectMap?.[
             MetadataObjectMapClassId.asDestination
         ] ||
@@ -60,7 +60,7 @@ export function createInitialMapping<
         metadataObjectMap.set(destination, [undefined, destinationObject]);
     }
 
-    var sourceObject =
+    const sourceObject =
         sourceMetadataObjectMap?.[MetadataObjectMapClassId.asSource] ||
         applyMetadataFn(source, MetadataObjectMapClassId.asSource);
 
@@ -71,7 +71,7 @@ export function createInitialMapping<
         metadataObjectMap.set(source, [sourceObject]);
     }
 
-    var mapping: Mapping<TSource, TDestination> = [
+    const mapping: Mapping<TSource, TDestination> = [
         [source, destination],
         [sourceObject as TSource, destinationObject as TDestination],
         [],
@@ -88,18 +88,18 @@ export function createInitialMapping<
         configurations[i](mapping);
     }
 
-    var destinationPaths = getPathRecursive(destinationObject);
+    const destinationPaths = getPathRecursive(destinationObject);
 
-    var mappingProperties = mapping[MappingClassId.properties];
-    var customMappingProperties = mapping[MappingClassId.customProperties];
-    var hasCustomMappingProperties = customMappingProperties.length > 0;
+    const mappingProperties = mapping[MappingClassId.properties];
+    const customMappingProperties = mapping[MappingClassId.customProperties];
+    const hasCustomMappingProperties = customMappingProperties.length > 0;
 
-    var namingConventions = mapping[MappingClassId.namingConventions];
-    var { processSourcePath, getMetadataAtMember, getNestedMappingPair } =
+    const namingConventions = mapping[MappingClassId.namingConventions];
+    const { processSourcePath, getMetadataAtMember, getNestedMappingPair } =
         createMappingUtil(mapper, source, destination);
 
     for (let i = 0, length = destinationPaths.length; i < length; i++) {
-        var destinationPath = destinationPaths[i];
+        const destinationPath = destinationPaths[i];
 
         // is a forMember (custom mapping configuration) already exists
         // for this destination path, skip it
@@ -120,7 +120,7 @@ export function createInitialMapping<
          * with naming conventions: fooBar -> [foo, bar]
          * without naming conventions: fooBar -> fooBar
          */
-        var sourcePath = processSourcePath(
+        const sourcePath = processSourcePath(
             sourceObject as TSource,
             namingConventions,
             destinationPath
@@ -131,42 +131,42 @@ export function createInitialMapping<
             continue;
         }
 
-        var metadataAtDestination = getMetadataAtMember(
+        const metadataAtDestination = getMetadataAtMember(
             destinationPath,
             'destination'
         );
 
-        var metadataAtSource = getMetadataAtMember(sourcePath, 'source');
+        const metadataAtSource = getMetadataAtMember(sourcePath, 'source');
 
         if (!metadataAtSource && !metadataAtDestination) continue;
 
-        var nestedMappingPair = getNestedMappingPair(
+        const nestedMappingPair = getNestedMappingPair(
             metadataAtSource,
             metadataAtDestination
         );
 
-        var transformation: MappingTransformation<TSource, TDestination> = [
+        const transformation: MappingTransformation<TSource, TDestination> = [
             mapInitialize(sourcePath),
         ];
 
         if (nestedMappingPair) {
             let typeConverter: Selector | undefined;
 
-            var isSourceArray = metadataAtSource![MetadataClassId.isArray];
-            var isDestinationArray =
+            const isSourceArray = metadataAtSource![MetadataClassId.isArray];
+            const isDestinationArray =
                 metadataAtDestination![MetadataClassId.isArray];
-            var mappingTypeConverters =
+            const mappingTypeConverters =
                 mapping[MappingClassId.typeConverters];
 
             if (mappingTypeConverters) {
-                var [sourceConverters, arraySourceConverters] =
+                const [sourceConverters, arraySourceConverters] =
                     mappingTypeConverters.get(
                         nestedMappingPair[
                             NestedMappingPairClassId.source
                         ] as MetadataIdentifier
                     ) || [];
 
-                var [destinationConverter, arrayDestinationConverter] =
+                const [destinationConverter, arrayDestinationConverter] =
                     (isSourceArray
                         ? arraySourceConverters?.get(
                               nestedMappingPair[
@@ -185,7 +185,7 @@ export function createInitialMapping<
             }
 
             if (typeConverter) {
-                var originalMapInitializeFn = transformation[
+                const originalMapInitializeFn = transformation[
                     MappingTransformationClassId.memberMapFn
                 ][MapFnClassId.fn] as Selector;
                 transformation[MappingTransformationClassId.memberMapFn][
@@ -207,7 +207,7 @@ export function createInitialMapping<
     }
 
     // consolidate mapping properties
-    for (var customMappingProperty of customMappingProperties) {
+    for (const customMappingProperty of customMappingProperties) {
         mappingProperties.push(customMappingProperty);
     }
 
@@ -222,9 +222,9 @@ export function createMappingUtil<
     sourceIdentifier: MetadataIdentifier<TSource>,
     destinationIdentifier: MetadataIdentifier<TDestination>
 ) {
-    var metadataMap = getMetadataMap(mapper);
-    var destinationMetadata = metadataMap.get(destinationIdentifier) || [];
-    var sourceMetadata = metadataMap.get(sourceIdentifier) || [];
+    const metadataMap = getMetadataMap(mapper);
+    const destinationMetadata = metadataMap.get(destinationIdentifier) || [];
+    const sourceMetadata = metadataMap.get(sourceIdentifier) || [];
 
     return {
         getMetadataAtMember: (
