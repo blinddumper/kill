@@ -11,7 +11,7 @@ import { rocketProfile } from './profiles/rocket.profile';
 import { getRocket } from './utils/get-rocket';
 
 describe('Map - SpaceX example', () => {
-    let mapper = createMapper({
+    const mapper = createMapper({
         strategyInitializer: classes(),
         namingConventions: {
             source: new SnakeCaseNamingConvention(),
@@ -26,16 +26,16 @@ describe('Map - SpaceX example', () => {
     it('should map rocket to rocket dto properly', () => {
         addProfile(mapper, rocketProfile);
 
-        let rocket = getRocket();
-        let dto = mapper.map(rocket, Rocket, RocketDto);
+        const rocket = getRocket();
+        const dto = mapper.map(rocket, Rocket, RocketDto);
         assertRocketDto(rocket, dto);
     });
 
     it('should map plain object rocket to rocket dto properly', () => {
         addProfile(mapper, rocketProfile);
 
-        let rocket = getRocket();
-        let dto = mapper.map(Object.assign({}, rocket), Rocket, RocketDto);
+        const rocket = getRocket();
+        const dto = mapper.map(Object.assign({}, rocket), Rocket, RocketDto);
         assertRocketDto(rocket, dto);
     });
 });
