@@ -3,7 +3,7 @@ import type { AnyEntity } from '@mikro-orm/core';
 import { Reference, Utils, wrap } from '@mikro-orm/core';
 import type { IWrappedEntityInternal } from '@mikro-orm/core/typings';
 
-const excluded = [
+let excluded = [
     '__gettersDefined',
     '__entity',
     '__meta',
@@ -22,15 +22,15 @@ export function serializeEntity(
     if (!Utils.isEntity(item)) return item;
     if (toPojo) return wrap(item).toPOJO();
 
-    const result = {} as Record<string | symbol, unknown>;
-    const keys = Object.keys((wrap(item) as IWrappedEntityInternal<AnyEntity>).__meta.properties);
-    for (const key of keys) {
+    let result = {} as Record<string | symbol, unknown>;
+    let keys = Object.keys((wrap(item) as IWrappedEntityInternal<AnyEntity>).__meta.properties);
+    for (let key of keys) {
         if (typeof key === 'symbol' || excluded.includes(key)) {
             continue;
         }
 
-        const value = item[key];
-        const keyMetadata = itemMetadata && itemMetadata[key] as Record<string, unknown>;
+        let value = item[key];
+        let keyMetadata = itemMetadata && itemMetadata[key] as Record<string, unknown>;
 
         if (Utils.isCollection(value)) {
             result[key] = (value.getSnapshot() || []).map((snapshot) => {
@@ -46,7 +46,7 @@ export function serializeEntity(
         }
 
         if (Reference.isReference(value)) {
-            const isExisting = memorized.has(value);
+            let isExisting = memorized.has(value);
 
             if (!skipCheckExisting && isExisting) {
                 result[key] = memorized.get(value);
