@@ -11,7 +11,7 @@ import { FooExtendProfile } from './foo-extend.profile';
 describe('fooExtendProfile', () => {
     let mapper: Mapper;
     beforeEach(async () => {
-        var moduleRef = await Test.createTestingModule({
+        const moduleRef = await Test.createTestingModule({
             providers: [
                 {
                     provide: getMapperToken(),
@@ -27,13 +27,13 @@ describe('fooExtendProfile', () => {
     });
 
     it('should map', () => {
-        var fooExtend = new FooExtend();
+        const fooExtend = new FooExtend();
         fooExtend.fooFoo = 'fooFoo';
         fooExtend.foo = 'foo';
         fooExtend.bar = new Bar();
         fooExtend.bar.bar = 'bar';
 
-        var dto = mapper.map(fooExtend, FooExtend, FooExtendDto);
+        const dto = mapper.map(fooExtend, FooExtend, FooExtendDto);
         expect(dto.fooFoo).toEqual(fooExtend.fooFoo);
         expect(dto.fooDto).toEqual(fooExtend.foo);
         expect(dto.barDto.barDto).toEqual(fooExtend.bar.bar);
