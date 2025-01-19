@@ -9,7 +9,7 @@ export function MapperOmitType<T, K extends keyof T>(
     classRef: Constructor<T>,
     keys: readonly K[]
 ): MappedType<Omit<T, typeof keys[number]>> {
-    let isInheritedPredicate = (propertyKey: string) =>
+    const isInheritedPredicate = (propertyKey: string) =>
         !keys.includes(propertyKey as K);
 
     class OmitClassType {
