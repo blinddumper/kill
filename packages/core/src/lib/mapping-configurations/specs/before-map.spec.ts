@@ -4,8 +4,8 @@ import { beforeMap } from '../before-map';
 
 describe(beforeMap.name, () => {
     it('should update mapping configuration with beforeMap', () => {
-        let mapping = [] as unknown as Mapping;
-        let cb = jest.fn();
+        const mapping = [] as unknown as Mapping;
+        const cb = jest.fn();
         beforeMap(cb)(mapping);
         expect(
             mapping[MappingClassId.callbacks]![
