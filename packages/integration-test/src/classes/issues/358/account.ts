@@ -44,6 +44,6 @@ export class AccountDTO {
     role!: AccountRole;
 }
 
-export const accountProfile: MappingProfile = (mapper) => {
+export let accountProfile: MappingProfile = (mapper) => {
     createMap(mapper, AccountEntity, AccountDTO);
 };
