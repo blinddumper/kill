@@ -56,16 +56,16 @@ export function typeConverter<
     >
 ): MappingConfiguration<TSource, TDestination> {
     return (mapping) => {
-        var isSourceArray = Array.isArray(source);
-        var isDestinationArray = Array.isArray(destination);
-        var sourceIdentifier: PrimitiveConstructorExtended = isSourceArray
+        const isSourceArray = Array.isArray(source);
+        const isDestinationArray = Array.isArray(destination);
+        const sourceIdentifier: PrimitiveConstructorExtended = isSourceArray
             ? source[0]
             : source;
-        var destinationIdentifier: PrimitiveConstructorExtended =
+        const destinationIdentifier: PrimitiveConstructorExtended =
             isDestinationArray ? destination[0] : destination;
 
-        var selector = toSelector(converterOrValueSelector);
-        var typeConverters =
+        const selector = toSelector(converterOrValueSelector);
+        const typeConverters =
             mapping[MappingClassId.typeConverters] ||
             (mapping[MappingClassId.typeConverters] = new Map());
 
@@ -74,14 +74,14 @@ export function typeConverter<
             [Selector?, Selector?]
         >;
 
-        var [sourceTypeConverters, arraySourceTypeConverters] =
+        const [sourceTypeConverters, arraySourceTypeConverters] =
             typeConverters.get(sourceIdentifier) || [];
 
         if (sourceTypeConverters || arraySourceTypeConverters) {
             sourceConverters = isSourceArray
                 ? arraySourceTypeConverters
                 : sourceTypeConverters;
-            var [destinationConverter, arrayDestinationConverter] =
+            const [destinationConverter, arrayDestinationConverter] =
                 sourceConverters.get(destinationIdentifier) || [];
             sourceConverters.set(
                 destinationIdentifier,
