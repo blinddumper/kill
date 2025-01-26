@@ -51,14 +51,14 @@ export function getTypeReference(
     isArray = false
 ): [elementType: string | undefined, isArray: boolean] {
     if (isArrayType(type) || isArrayTypeNode(typeNode)) {
-        var [arrayType] =
+        const [arrayType] =
             (type as TypeReference).typeArguments ||
             (type as TypeReference).aliasTypeArguments ||
             ((typeNode as ArrayTypeNode).elementType
                 ? [(typeNode as ArrayTypeNode).elementType]
                 : []) ||
             [];
-        var isArrayTypeNode = isTypeNode(arrayType as TypeNode);
+        const isArrayTypeNode = isTypeNode(arrayType as TypeNode);
         return getTypeReference(
             isArrayTypeNode
                 ? typeChecker.getTypeAtLocation(arrayType as TypeNode)
@@ -133,7 +133,7 @@ function isDynamicallyAdded(identifier: Node): boolean {
 }
 
 function isArrayType(type: Type): boolean {
-    var symbol = type.getSymbol() || type.aliasSymbol;
+    const symbol = type.getSymbol() || type.aliasSymbol;
     if (!symbol) {
         return false;
     }
@@ -159,11 +159,11 @@ function isEnumType(type: Type): boolean {
 
     if (hasFlag(type, TypeFlags.EnumLiteral) && !type.isUnion()) return false;
 
-    var symbol = type.getSymbol();
+    const symbol = type.getSymbol();
     if (symbol == null) {
         return false;
     }
-    var { valueDeclaration } = symbol;
+    const { valueDeclaration } = symbol;
     return (
         valueDeclaration != null &&
         valueDeclaration.kind === SyntaxKind.EnumDeclaration
@@ -175,8 +175,8 @@ function isNumber(type: Type) {
 }
 
 function isNumberEnum(type: Type): boolean {
-    var isEnum = isEnumType(type);
-    var valueDeclaration = type.getSymbol()
+    const isEnum = isEnumType(type);
+    const valueDeclaration = type.getSymbol()
         ?.valueDeclaration as EnumDeclaration;
 
     return (
@@ -193,8 +193,8 @@ function isString(type: Type): boolean {
 }
 
 function isStringEnum(type: Type): boolean {
-    var isEnum = isEnumType(type);
-    var valueDeclaration = type.getSymbol()
+    const isEnum = isEnumType(type);
+    const valueDeclaration = type.getSymbol()
         ?.valueDeclaration as EnumDeclaration;
 
     return (
@@ -215,12 +215,12 @@ function isBigInt(type: Type) {
 }
 
 function getDecoratorName(decorator: Decorator): string {
-    var isDecoratorFactory =
+    const isDecoratorFactory =
         decorator.expression.kind === SyntaxKind.CallExpression;
     if (isDecoratorFactory) {
-        var callExpression = decorator.expression;
-        var expression = (callExpression as CallExpression).expression;
-        var identifier = expression as Identifier;
+        const callExpression = decorator.expression;
+        const expression = (callExpression as CallExpression).expression;
+        const identifier = expression as Identifier;
         if (isDynamicallyAdded(identifier)) {
             return '';
         }
@@ -242,7 +242,7 @@ function getNameFromExpression(
 function getIdentifierFromExpression(
     expression: LeftHandSideExpression
 ): Identifier {
-    var identifier = getNameFromExpression(expression);
+    const identifier = getNameFromExpression(expression);
     if (identifier && identifier.kind !== SyntaxKind.Identifier) {
         throw new Error();
     }
@@ -258,7 +258,7 @@ function getText(
     if (!typeFormatFlags) {
         typeFormatFlags = getDefaultTypeFormatFlags(enclosingNode);
     }
-    var compilerNode = !enclosingNode ? undefined : enclosingNode;
+    const compilerNode = !enclosingNode ? undefined : enclosingNode;
     return typeChecker.typeToString(type, compilerNode, typeFormatFlags);
 }
 
