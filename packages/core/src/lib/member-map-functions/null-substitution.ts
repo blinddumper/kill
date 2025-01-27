@@ -16,7 +16,7 @@ export function nullSubstitution<
     return [
         TransformationType.NullSubstitution,
         (source, sourceMemberPath) => {
-            let sourceValue = get(
+            const sourceValue = get(
                 source,
                 sourceMemberPath
             ) as TSelectorReturn;
