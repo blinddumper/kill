@@ -14,7 +14,7 @@ import {
     transformArray,
 } from './utils/transform';
 
-export let MapPipe: <
+export const MapPipe: <
     TSource extends Dictionary<TSource>,
     TDestination extends Dictionary<TDestination>
 >(
@@ -37,7 +37,7 @@ function createMapPipe<
         TDestination
     >
 ): new (...args: unknown[]) => PipeTransform {
-    let { isArray, mapperName, transformedMapOptions } =
+    const { isArray, mapperName, transformedMapOptions } =
         getTransformOptions(options);
 
     class MixinMapPipe implements PipeTransform {
