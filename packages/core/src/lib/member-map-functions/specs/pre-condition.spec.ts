@@ -12,14 +12,14 @@ describe(preCondition.name, () => {
     });
 
     it('should return truthy when true', () => {
-        var preCond = preCondition(() => true);
-        var result = preCond?.[0]({});
+        const preCond = preCondition(() => true);
+        const result = preCond?.[0]({});
         expect(result).toEqual(true);
     });
 
     it('should return falsy when false', () => {
-        var preCond = preCondition(() => false);
-        var result = preCond?.[0]({});
+        const preCond = preCondition(() => false);
+        const result = preCond?.[0]({});
         expect(result).toEqual(false);
     });
 });
