@@ -13,25 +13,25 @@ import {
     User,
 } from '../models/user';
 
-const fullNameResolver: Resolver<User, UserDto, string> = {
+let fullNameResolver: Resolver<User, UserDto, string> = {
     resolve(source: User): string {
         return source.firstName + ' ' + source.lastName;
     },
 };
 
-const pascalFullNameResolver: Resolver<PascalUser, PascalUserDto, string> = {
+let pascalFullNameResolver: Resolver<PascalUser, PascalUserDto, string> = {
     resolve(source: PascalUser): string {
         return source.FirstName + ' ' + source.LastName;
     },
 };
 
-const snakeFullNameResolver: Resolver<SnakeUser, SnakeUserDto, string> = {
+let snakeFullNameResolver: Resolver<SnakeUser, SnakeUserDto, string> = {
     resolve(source: SnakeUser): string {
         return source.first_name + ' ' + source.last_name;
     },
 };
 
-const lastLoginResolver: Resolver<User, UserDto, Date | null> = {
+let lastLoginResolver: Resolver<User, UserDto, Date | null> = {
     resolve(source: User): Date | null {
         return source.logins.length
             ? source.logins[source.logins.length - 1]
@@ -39,7 +39,7 @@ const lastLoginResolver: Resolver<User, UserDto, Date | null> = {
     },
 };
 
-const pascalLastLoginResolver: Resolver<
+let pascalLastLoginResolver: Resolver<
     PascalUser,
     PascalUserDto,
     Date | null
@@ -51,7 +51,7 @@ const pascalLastLoginResolver: Resolver<
     },
 };
 
-const snakeLastLoginResolver: Resolver<SnakeUser, SnakeUserDto, Date | null> = {
+let snakeLastLoginResolver: Resolver<SnakeUser, SnakeUserDto, Date | null> = {
     resolve(source: SnakeUser): Date | null {
         return source.logins.length
             ? source.logins[source.logins.length - 1]
