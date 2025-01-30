@@ -4,9 +4,9 @@ import { mapDefer } from '../map-defer';
 
 describe(mapDefer.name, () => {
     it('should return correctly', () => {
-        let defer = () => ignore();
+        const defer = () => ignore();
 
-        let mapDeferFn = mapDefer(defer);
+        const mapDeferFn = mapDefer(defer);
 
         expect(mapDeferFn).toBeTruthy();
         expect(mapDeferFn[MapFnClassId.type]).toEqual(
