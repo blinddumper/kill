@@ -10,7 +10,7 @@ export class SnakeCaseNamingConvention implements NamingConvention {
     splittingExpression = /_/;
 
     public transformPropertyName(sourcePropNameParts: string[]): string {
-        const len = sourcePropNameParts.length;
+        let len = sourcePropNameParts.length;
 
         if (len <= 1) {
             return sourcePropNameParts[0].toLowerCase() || '';
