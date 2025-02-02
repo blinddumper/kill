@@ -45,13 +45,13 @@ export function createMap<
     )[]
 ): Mapping<TSource, TDestination> {
     // turn string into symbol for identifier
-    var sourceIdentifier: MetadataIdentifier<TSource> =
+    const sourceIdentifier: MetadataIdentifier<TSource> =
         typeof source === 'string' ? Symbol.for(source) : source;
 
     let destinationIdentifier: MetadataIdentifier<TDestination> =
         sourceIdentifier as MetadataIdentifier<TDestination>;
 
-    var [destination, ...mappingConfigFns] =
+    const [destination, ...mappingConfigFns] =
         mappingConfigFnsOrIdentifier || [];
 
     if (destination) {
@@ -68,7 +68,7 @@ export function createMap<
         }
     }
 
-    var mappings = getMappings(mapper);
+    const mappings = getMappings(mapper);
     let mapping = mappings.get(sourceIdentifier)?.get(destinationIdentifier);
 
     if (mapping) {
@@ -82,9 +82,9 @@ export function createMap<
     }
 
     // get the strategy from Mapper to retrieve the metadata
-    var strategy = getStrategy(mapper);
+    const strategy = getStrategy(mapper);
 
-    var strategyMetadataMap = strategy.retrieveMetadata(
+    const strategyMetadataMap = strategy.retrieveMetadata(
         sourceIdentifier,
         destinationIdentifier
     );
