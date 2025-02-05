@@ -3,7 +3,7 @@ import { convertUsing, createMap, forMember } from '@automapper/core';
 import { BioDto, PascalBioDto, SnakeBioDto } from '../dtos/bio.dto';
 import { Bio, PascalBio, SnakeBio } from '../models/bio';
 
-const dateToStringConverter: Converter<Date, string> = {
+let dateToStringConverter: Converter<Date, string> = {
     convert(source: Date): string {
         if (source instanceof Date) return source.toDateString();
         return new Date(source).toDateString();
