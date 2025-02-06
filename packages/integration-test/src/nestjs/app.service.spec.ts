@@ -12,7 +12,7 @@ import { BioProfile } from './profiles/bio.profile';
 import { UserProfile } from './profiles/user.profile';
 
 describe(AppService.name, () => {
-    let service: AppService;
+    const service: AppService;
 
     beforeAll(async () => {
         var app = await Test.createTestingModule({
