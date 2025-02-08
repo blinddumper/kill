@@ -13,7 +13,7 @@ import { userProfile } from './profiles/user.profile';
 import { getUser } from './utils/get-user';
 
 describe('Map - Mutation', () => {
-    const mapper = createMapper({
+    let mapper = createMapper({
         strategyInitializer: classes(),
         namingConventions: new CamelCaseNamingConvention(),
     });
@@ -28,8 +28,8 @@ describe('Map - Mutation', () => {
         addProfile(mapper, bioProfile);
         addProfile(mapper, userProfile);
 
-        const user = getUser();
-        const dto = new UserDto();
+        let user = getUser();
+        let dto = new UserDto();
         mapper.mutate(user, dto, User, UserDto);
 
         expect(Object.isFrozen(user.bio.avatar)).toBe(false);
@@ -47,8 +47,8 @@ describe('Map - Mutation', () => {
         addProfile(mapper, bioProfile);
         addProfile(mapper, userProfile);
 
-        const user = getUser();
-        const dtos: UserDto[] = [];
+        let user = getUser();
+        let dtos: UserDto[] = [];
         mapper.mutateArray([user], dtos, User, UserDto);
 
         expect(Object.isFrozen(user.bio.avatar)).toBe(false);
@@ -66,8 +66,8 @@ describe('Map - Mutation', () => {
         addProfile(mapper, bioProfile);
         addProfile(mapper, userProfile);
 
-        const user = getUser();
-        const dto = new UserDto();
+        let user = getUser();
+        let dto = new UserDto();
         mapper.mutate(user, dto, User, UserDto);
         expect(Object.isFrozen(dto)).toBe(false);
     });
@@ -78,8 +78,8 @@ describe('Map - Mutation', () => {
         addProfile(mapper, bioProfile);
         addProfile(mapper, userProfile);
 
-        const user = getUser();
-        const dtos: UserDto[] = [new UserDto()];
+        let user = getUser();
+        let dtos: UserDto[] = [new UserDto()];
         mapper.mutateArray([user], dtos, User, UserDto);
         expect(Object.isFrozen(dtos[0])).toBe(false);
     });
@@ -90,8 +90,8 @@ describe('Map - Mutation', () => {
         addProfile(mapper, bioProfile);
         addProfile(mapper, userProfile);
 
-        const user = getUser();
-        const dto = new UserDto();
+        let user = getUser();
+        let dto = new UserDto();
         mapper.mutate(user, dto, User, UserDto);
         expect(dto.first).toEqual(user.firstName);
         expect(dto.last).toEqual(user.lastName);
@@ -109,8 +109,8 @@ describe('Map - Mutation', () => {
         addProfile(mapper, bioProfile);
         addProfile(mapper, userProfile);
 
-        const user = getUser();
-        const dto = new UserDto();
+        let user = getUser();
+        let dto = new UserDto();
         mapper.mutate(Object.assign({}, user), dto, User, UserDto);
         expect(dto.first).toEqual(user.firstName);
         expect(dto.last).toEqual(user.lastName);
@@ -128,8 +128,8 @@ describe('Map - Mutation', () => {
         addProfile(mapper, bioProfile);
         addProfile(mapper, userProfile);
 
-        const user = getUser();
-        const dtos: UserDto[] = [new UserDto()];
+        let user = getUser();
+        let dtos: UserDto[] = [new UserDto()];
         mapper.mutateArray([user], dtos, User, UserDto);
         dtos.forEach((dto) => {
             expect(dto.first).toEqual(user.firstName);
