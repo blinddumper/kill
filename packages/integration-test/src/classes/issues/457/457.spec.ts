@@ -24,7 +24,7 @@ export class SlippageDetailsResponse {
 }
 
 describe('Discussion 457', () => {
-    let mapper = createMapper({ strategyInitializer: classes() });
+    const mapper = createMapper({ strategyInitializer: classes() });
 
     it('should map properly', () => {
         createMap(
@@ -34,7 +34,7 @@ describe('Discussion 457', () => {
             typeConverter(String, BigInt, (str) => BigInt(str))
         );
 
-        let details = mapper.map(
+        const details = mapper.map(
             {
                 amountTryBought: '118037573493144275546370733802',
                 actualAmountBought: '100333357843974197803636520962',
