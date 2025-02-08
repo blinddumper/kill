@@ -3,25 +3,25 @@ import { createMap, forMember, mapFrom } from '@automapper/core';
 import { PascalUserDto, SnakeUserDto, UserDto } from '../dtos/user.dto';
 import { PascalUser, SnakeUser, User } from '../models/user';
 
-let fullNameResolver: Resolver<User, UserDto, string> = {
+const fullNameResolver: Resolver<User, UserDto, string> = {
     resolve(source: User): string {
         return source.firstName + ' ' + source.lastName;
     },
 };
 
-let pascalFullNameResolver: Resolver<PascalUser, PascalUserDto, string> = {
+const pascalFullNameResolver: Resolver<PascalUser, PascalUserDto, string> = {
     resolve(source: PascalUser): string {
         return source.FirstName + ' ' + source.LastName;
     },
 };
 
-let snakeFullNameResolver: Resolver<SnakeUser, SnakeUserDto, string> = {
+const snakeFullNameResolver: Resolver<SnakeUser, SnakeUserDto, string> = {
     resolve(source: SnakeUser): string {
         return source.first_name + ' ' + source.last_name;
     },
 };
 
-let lastLoginResolver: Resolver<User, UserDto, Date | null> = {
+const lastLoginResolver: Resolver<User, UserDto, Date | null> = {
     resolve(source: User): Date | null {
         return source.logins.length
             ? source.logins[source.logins.length - 1]
@@ -29,7 +29,7 @@ let lastLoginResolver: Resolver<User, UserDto, Date | null> = {
     },
 };
 
-let pascalLastLoginResolver: Resolver<
+const pascalLastLoginResolver: Resolver<
     PascalUser,
     PascalUserDto,
     Date | null
@@ -41,7 +41,7 @@ let pascalLastLoginResolver: Resolver<
     },
 };
 
-let snakeLastLoginResolver: Resolver<SnakeUser, SnakeUserDto, Date | null> = {
+const snakeLastLoginResolver: Resolver<SnakeUser, SnakeUserDto, Date | null> = {
     resolve(source: SnakeUser): Date | null {
         return source.logins.length
             ? source.logins[source.logins.length - 1]
