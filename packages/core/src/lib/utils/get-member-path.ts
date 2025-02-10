@@ -1,7 +1,7 @@
 import type { Dictionary, Selector } from '../types';
 
-let PROXY_TARGET = (): undefined => undefined;
-let PROXY_OBJECT = createProxy(PROXY_TARGET);
+const PROXY_TARGET = (): undefined => undefined;
+const PROXY_OBJECT = createProxy(PROXY_TARGET);
 
 /**
  * For a given JS function selector, return a list of all members that were selected.
@@ -9,11 +9,11 @@ let PROXY_OBJECT = createProxy(PROXY_TARGET);
  * @returns `null` if the given `fnSelector` doesn't match with anything.
  */
 export function getMembers(fnSelector: Selector): string[] | null {
-    let resultProxy = fnSelector(PROXY_OBJECT) as () => string[];
+    const resultProxy = fnSelector(PROXY_OBJECT) as () => string[];
     if (typeof resultProxy !== 'function') {
         return null;
     }
-    let members: string[] = resultProxy();
+    const members: string[] = resultProxy();
     if (members.length === 0 || members.some((m) => typeof m !== 'string')) {
         return null;
     }
@@ -34,7 +34,7 @@ export function getMembers(fnSelector: Selector): string[] | null {
  * ```
  */
 export function getMemberPath(fn: Selector): string[] {
-    let members = getMembers(fn);
+    const members = getMembers(fn);
     return members ? members : [];
 }
 
@@ -46,9 +46,9 @@ function createProxy<T extends Dictionary<T>>(
     target: T,
     path: string[] = []
 ): T {
-    let realTraps: ProxyHandler<T> = {
+    const realTraps: ProxyHandler<T> = {
         get(_: T, p: string): typeof PROXY_TARGET {
-            let childPath = path.slice();
+            const childPath = path.slice();
             childPath.push(p);
             return createProxy(PROXY_TARGET, childPath);
         },
