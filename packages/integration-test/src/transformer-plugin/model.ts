@@ -1,4 +1,4 @@
-export let userModelText = `
+export const userModelText = `
 enum Role {
   ADMIN,
   USER
@@ -52,7 +52,7 @@ export class User {
 }
 `;
 
-export let userModelTextStrict = `
+export const userModelTextStrict = `
 enum Role {
   ADMIN,
   USER
@@ -106,7 +106,7 @@ export class User {
 }
 `;
 
-export let userModelTranspiledText = `"use strict";
+export const userModelTranspiledText = `"use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
 var Role;
@@ -206,7 +206,7 @@ __decorate([
 exports.User = User;
 `;
 
-export let userModelTranspiledTextESM = `var Role;
+export const userModelTranspiledTextESM = `var Role;
 (function (Role) {
     Role[Role["ADMIN"] = 0] = "ADMIN";
     Role[Role["USER"] = 1] = "USER";
