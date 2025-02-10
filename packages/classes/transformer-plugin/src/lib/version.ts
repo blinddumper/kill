@@ -1,2 +1,2 @@
 /* generated */
-export let version = '{{REPLACED}}';
+export const version = '{{REPLACED}}';
