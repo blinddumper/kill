@@ -13,10 +13,10 @@ function getMappingProperty(path = 'foo') {
 
 describe(forSelf.name, () => {
     it('should update mapping properties with another mapping', () => {
-        let mapping = [] as unknown as Mapping;
+        const mapping = [] as unknown as Mapping;
         mapping[MappingClassId.properties] = [];
 
-        let selfMapping = [] as unknown as Mapping;
+        const selfMapping = [] as unknown as Mapping;
         selfMapping[MappingClassId.properties] = [getMappingProperty()];
 
         forSelf(
@@ -27,10 +27,10 @@ describe(forSelf.name, () => {
     });
 
     it('should skip existing mapping properties from another mapping', () => {
-        let mapping = [] as unknown as Mapping;
+        const mapping = [] as unknown as Mapping;
         mapping[MappingClassId.properties] = [getMappingProperty()];
 
-        let selfMapping = [] as unknown as Mapping;
+        const selfMapping = [] as unknown as Mapping;
         selfMapping[MappingClassId.properties] = [
             getMappingProperty(),
             getMappingProperty('bar'),
