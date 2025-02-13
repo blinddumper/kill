@@ -13,7 +13,7 @@ describe('AppController', () => {
     let app: INestApplication;
 
     beforeAll(async () => {
-        var moduleRef = await Test.createTestingModule({
+        const moduleRef = await Test.createTestingModule({
             imports: [
                 AutomapperModule.forRoot({
                     strategyInitializer: classes(),
@@ -32,7 +32,7 @@ describe('AppController', () => {
     });
 
     it('GET /', () => {
-        var fooExtendDto = new FooExtendDto();
+        const fooExtendDto = new FooExtendDto();
         fooExtendDto.fooFoo = 'fooFoo';
         fooExtendDto.fooDto = 'foo';
         fooExtendDto.barDto = new BarDto();
