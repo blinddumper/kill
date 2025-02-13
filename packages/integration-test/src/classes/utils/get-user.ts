@@ -9,23 +9,23 @@ import { Job, PascalJob, SnakeJob } from '../models/job';
 import { PascalUser, SnakeUser, User } from '../models/user';
 
 export function getUserDto(): UserDto {
-    let addressDto = new AddressDto();
+    const addressDto = new AddressDto();
     addressDto.formattedAddress = '123 Acme Dr Sim Show Me';
 
-    let otherAddressDto = new AddressDto();
+    const otherAddressDto = new AddressDto();
     otherAddressDto.formattedAddress = '456 Rubik Dr Some October';
 
-    let avatarDto = new AvatarDto();
+    const avatarDto = new AvatarDto();
     avatarDto.url = 'default url';
     avatarDto.forCondition = true;
 
-    let bioDto = new BioDto();
+    const bioDto = new BioDto();
     bioDto.text = 'Introvert-ish';
     bioDto.birthday = 'Mon Oct 14 1991';
     bioDto.avatar = avatarDto;
     bioDto.addresses = [addressDto, otherAddressDto];
 
-    let userDto = new UserDto();
+    const userDto = new UserDto();
     userDto.first = 'Chau';
     userDto.last = 'Tran';
     userDto.full = 'Chau Tran';
@@ -50,27 +50,27 @@ export function getUser(
         avatar?: Partial<Avatar>;
     } = {}
 ) {
-    let userProfile = new Bio();
+    const userProfile = new Bio();
     userProfile.text = 'Introvert-ish';
     userProfile.birthday = new Date('10/14/1991');
 
-    let address1 = new Address();
+    const address1 = new Address();
     address1.street = '123 Acme Dr';
     address1.city = 'Sim';
     address1.state = 'Show Me';
 
-    let address2 = new Address();
+    const address2 = new Address();
     address2.street = '456 Rubik Dr';
     address2.city = 'Some';
     address2.state = 'October';
     userProfile.addresses = [address1, address2];
 
-    let avatar = new Avatar();
+    const avatar = new Avatar();
     avatar.source = 'Internet';
     avatar.url = 'url.com';
     userProfile.avatar = Object.assign(avatar, partials.avatar ?? {});
 
-    let user = new User();
+    const user = new User();
     user.firstName = 'Chau';
     user.lastName = 'Tran';
     user.logins = [
@@ -79,7 +79,7 @@ export function getUser(
         new Date('12/12/2021'),
     ];
 
-    let userJob = new Job();
+    const userJob = new Job();
     userJob.title = 'Developer';
     userJob.annualSalary = 99999;
     user.job = Object.assign(userJob, partials.job ?? {});
@@ -96,27 +96,27 @@ export function getPascalUser(
         avatar?: Partial<PascalAvatar>;
     } = {}
 ) {
-    let bio = new PascalBio();
+    const bio = new PascalBio();
     bio.Text = 'Introvert-ish';
     bio.Birthday = new Date('10/14/1991');
 
-    let address1 = new PascalAddress();
+    const address1 = new PascalAddress();
     address1.Street = '123 Acme Dr';
     address1.City = 'Sim';
     address1.State = 'Show Me';
 
-    let address2 = new PascalAddress();
+    const address2 = new PascalAddress();
     address2.Street = '456 Rubik Dr';
     address2.City = 'Some';
     address2.State = 'October';
     bio.Addresses = [address1, address2];
 
-    let avatar = new PascalAvatar();
+    const avatar = new PascalAvatar();
     avatar.Source = 'Internet';
     avatar.Url = 'url.com';
     bio.Avatar = Object.assign(avatar, partials.avatar ?? {});
 
-    let user = new PascalUser();
+    const user = new PascalUser();
     user.FirstName = 'Chau';
     user.LastName = 'Tran';
     user.Logins = [
@@ -125,7 +125,7 @@ export function getPascalUser(
         new Date('12/12/2021'),
     ];
 
-    let userJob = new PascalJob();
+    const userJob = new PascalJob();
     userJob.Title = 'Developer';
     userJob.AnnualSalary = 99999;
     user.Job = Object.assign(userJob, partials.job ?? {});
@@ -142,27 +142,27 @@ export function getSnakeUser(
         avatar?: Partial<SnakeAvatar>;
     } = {}
 ) {
-    let bio = new SnakeBio();
+    const bio = new SnakeBio();
     bio.text = 'Introvert-ish';
     bio.birthday = new Date('10/14/1991');
 
-    let address1 = new SnakeAddress();
+    const address1 = new SnakeAddress();
     address1.street = '123 Acme Dr';
     address1.city = 'Sim';
     address1.state = 'Show Me';
 
-    let address2 = new SnakeAddress();
+    const address2 = new SnakeAddress();
     address2.street = '456 Rubik Dr';
     address2.city = 'Some';
     address2.state = 'October';
     bio.addresses = [address1, address2];
 
-    let avatar = new SnakeAvatar();
+    const avatar = new SnakeAvatar();
     avatar.source = 'Internet';
     avatar.url = 'url.com';
     bio.avatar = Object.assign(avatar, partials.avatar ?? {});
 
-    let user = new SnakeUser();
+    const user = new SnakeUser();
     user.first_name = 'Chau';
     user.last_name = 'Tran';
     user.logins = [
@@ -171,7 +171,7 @@ export function getSnakeUser(
         new Date('12/12/2021'),
     ];
 
-    let userJob = new SnakeJob();
+    const userJob = new SnakeJob();
     userJob.title = 'Developer';
     userJob.annual_salary = 99999;
     user.job = Object.assign(userJob, partials.job ?? {});
