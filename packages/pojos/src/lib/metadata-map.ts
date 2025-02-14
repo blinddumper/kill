@@ -34,17 +34,17 @@ export class PojosMetadataMap {
                 | { type: PojoMetadata | [PojoMetadata]; depth: number };
         } = {}
     ) {
-        var symbolIdentifier =
+        const symbolIdentifier =
             typeof identifier === 'string'
                 ? Symbol.for(identifier)
                 : identifier;
 
-        var metadataEntries = Object.entries(metadata);
+        const metadataEntries = Object.entries(metadata);
         if (!metadataEntries.length) return;
 
         for (let i = 0, length = metadataEntries.length; i < length; i++) {
-            var [metadataKey, pojoMetadata] = metadataEntries[i];
-            var normalizedMetadata = this.normalizePojoMetadata(pojoMetadata);
+            const [metadataKey, pojoMetadata] = metadataEntries[i];
+            const normalizedMetadata = this.normalizePojoMetadata(pojoMetadata);
             if (!this.metadataStorage.has(symbolIdentifier)) {
                 this.metadataStorage.set(symbolIdentifier, []);
             }
@@ -64,12 +64,12 @@ export class PojosMetadataMap {
             isGetterOnly?: boolean;
         }
     ][] {
-        var identifierMetadata = this.metadataStorage.get(identifier);
+        const identifierMetadata = this.metadataStorage.get(identifier);
         if (!identifierMetadata) return [];
 
         return identifierMetadata.map(([key, { type, depth }]) => {
-            var meta = type();
-            var isArray = Array.isArray(meta);
+            const meta = type();
+            const isArray = Array.isArray(meta);
             return [
                 key,
                 {
@@ -100,7 +100,7 @@ export class PojosMetadataMap {
             };
         }
 
-        var metadata = pojoMetadata as {
+        const metadata = pojoMetadata as {
             type: PojoMetadata | [PojoMetadata];
             depth: number;
         };
