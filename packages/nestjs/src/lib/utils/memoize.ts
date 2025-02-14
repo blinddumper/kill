@@ -1,12 +1,12 @@
-const defaultKey = 'default';
+let defaultKey = 'default';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export function memoize(fn: Function) {
-    const cache: Record<string, unknown> = {};
+    let cache: Record<string, unknown> = {};
     return (...args: any[]) => {
-        const n =
+        let n =
             args.reduce((key, arg) => {
-                const argToConcat =
+                let argToConcat =
                     typeof arg === 'string'
                         ? arg
                         : typeof arg === 'object'
@@ -18,7 +18,7 @@ export function memoize(fn: Function) {
             return cache[n];
         }
 
-        const result = n === defaultKey ? fn() : fn(...args);
+        let result = n === defaultKey ? fn() : fn(...args);
         cache[n] = result;
         return result;
     };
