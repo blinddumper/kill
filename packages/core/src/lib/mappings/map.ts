@@ -109,7 +109,7 @@ export function map<
     isMapArray = false,
 }: MapParameter<TSource, TDestination>): TDestination {
     // destructure mapping
-    const [
+    var [
         [sourceIdentifier, destinationIdentifier],
         [, destinationWithMetadata],
         propsToMap,
@@ -121,7 +121,7 @@ export function map<
     ] = mapping;
 
     // deconstruct MapOptions
-    const {
+    var {
         beforeMap: mapBeforeCallback,
         afterMap: mapAfterCallback,
         destinationConstructor:
@@ -129,22 +129,22 @@ export function map<
         extraArgs,
     } = options ?? {};
 
-    const errorHandler = getErrorHandler(mapper);
-    const metadataMap = getMetadataMap(mapper);
+    var errorHandler = getErrorHandler(mapper);
+    var metadataMap = getMetadataMap(mapper);
 
-    const destination: TDestination = mapDestinationConstructor(
+    var destination: TDestination = mapDestinationConstructor(
         sourceObject,
         destinationIdentifier
     );
 
     // get extraArguments
-    const extraArguments = extraArgs?.(mapping, destination);
+    var extraArguments = extraArgs?.(mapping, destination);
 
     // initialize an array of keys that have already been configured
-    const configuredKeys: string[] = [];
+    var configuredKeys: string[] = [];
 
     if (!isMapArray) {
-        const beforeMap = mapBeforeCallback ?? mappingBeforeCallback;
+        var beforeMap = mapBeforeCallback ?? mappingBeforeCallback;
         if (beforeMap) {
             beforeMap(sourceObject, destination, extraArguments);
         }
@@ -153,7 +153,7 @@ export function map<
     // map
     for (let i = 0, length = propsToMap.length; i < length; i++) {
         // destructure mapping property
-        const [
+        var [
             destinationMemberPath,
             [
                 ,
@@ -187,11 +187,11 @@ export function map<
         }
 
         // Set up a shortcut function to set destinationMemberPath on destination with value as argument
-        const setMember = (valFn: () => unknown) => {
+        var setMember = (valFn: () => unknown) => {
             try {
                 return setMemberFn(destinationMemberPath, destination)(valFn());
             } catch (originalError) {
-                const errorMessage = `
+                var errorMessage = `
 Error at "${destinationMemberPath}" on ${
                     (destinationIdentifier as Constructor)['prototype']
                         ?.constructor?.name || destinationIdentifier.toString()
@@ -221,8 +221,8 @@ Original error: ${originalError}`;
             TransformationType.MapInitialize
         ) {
             // check if metadata as destinationMemberPath is null
-            const destinationMetadata = metadataMap.get(destinationIdentifier);
-            const hasNullMetadata =
+            var destinationMetadata = metadataMap.get(destinationIdentifier);
+            var hasNullMetadata =
                 destinationMetadata &&
                 destinationMetadata.find((metadata) =>
                     isPrimitiveArrayEqual(
@@ -231,13 +231,13 @@ Original error: ${originalError}`;
                     )
                 ) === null;
 
-            const mapInitializedValue = (
+            var mapInitializedValue = (
                 transformationMapFn[MapFnClassId.fn] as MapInitializeReturn<
                     TSource,
                     TDestination
                 >[MapFnClassId.fn]
             )(sourceObject);
-            const isTypedConverted =
+            var isTypedConverted =
                 transformationMapFn[MapFnClassId.isConverted];
 
             // if null/undefined
@@ -261,7 +261,7 @@ Original error: ${originalError}`;
 
             // if isArray
             if (Array.isArray(mapInitializedValue)) {
-                const [first] = mapInitializedValue;
+                var [first] = mapInitializedValue;
                 // if first item is a primitive
                 if (
                     typeof first !== 'object' ||
@@ -302,7 +302,7 @@ Original error: ${originalError}`;
             }
 
             if (typeof mapInitializedValue === 'object') {
-                const nestedMapping = getMapping(
+                var nestedMapping = getMapping(
                     mapper,
                     sourceMemberIdentifier as MetadataIdentifier,
                     destinationMemberIdentifier as MetadataIdentifier
@@ -310,7 +310,7 @@ Original error: ${originalError}`;
 
                 // nested mutate
                 if (getMemberFn) {
-                    const memberValue = getMemberFn(destinationMemberPath);
+                    var memberValue = getMemberFn(destinationMemberPath);
                     if (memberValue !== undefined) {
                         map({
                             sourceObject: mapInitializedValue as TSource,
@@ -354,7 +354,7 @@ Original error: ${originalError}`;
     }
 
     if (!isMapArray) {
-        const afterMap = mapAfterCallback ?? mappingAfterCallback;
+        var afterMap = mapAfterCallback ?? mappingAfterCallback;
         if (afterMap) {
             afterMap(sourceObject, destination, extraArguments);
         }
