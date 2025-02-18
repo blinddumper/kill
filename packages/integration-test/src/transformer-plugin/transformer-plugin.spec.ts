@@ -25,16 +25,16 @@ import {
 describe('Classes - Transformer Plugin', () => {
     describe('named before import', () => {
         it('should compile', () => {
-            let tsConfig: CompilerOptions = {
+            const tsConfig: CompilerOptions = {
                 module: ModuleKind.CommonJS,
                 target: ScriptTarget.ESNext,
                 noEmitHelpers: true,
             };
 
-            let fileName = 'user.model.ts';
-            let programFixture = createProgram([fileName], tsConfig);
+            const fileName = 'user.model.ts';
+            const programFixture = createProgram([fileName], tsConfig);
 
-            let result = transpileModule(userModelText, {
+            const result = transpileModule(userModelText, {
                 compilerOptions: tsConfig,
                 fileName,
                 transformers: {
@@ -48,16 +48,16 @@ describe('Classes - Transformer Plugin', () => {
     });
     describe('default import', () => {
         it('should compile', () => {
-            let tsConfig: CompilerOptions = {
+            const tsConfig: CompilerOptions = {
                 module: ModuleKind.CommonJS,
                 target: ScriptTarget.ESNext,
                 noEmitHelpers: true,
             };
 
-            let fileName = 'user.model.ts';
-            let programFixture = createProgram([fileName], tsConfig);
+            const fileName = 'user.model.ts';
+            const programFixture = createProgram([fileName], tsConfig);
 
-            let result = transpileModule(userModelText, {
+            const result = transpileModule(userModelText, {
                 compilerOptions: tsConfig,
                 fileName,
                 transformers: {
@@ -72,16 +72,16 @@ describe('Classes - Transformer Plugin', () => {
         });
 
         it('should compile for es2015', () => {
-            let tsConfig: CompilerOptions = {
+            const tsConfig: CompilerOptions = {
                 module: ModuleKind.ES2015,
                 target: ScriptTarget.ESNext,
                 noEmitHelpers: true,
             };
 
-            let fileName = 'user.model.ts';
-            let programFixture = createProgram([fileName], tsConfig);
+            const fileName = 'user.model.ts';
+            const programFixture = createProgram([fileName], tsConfig);
 
-            let result = transpileModule(userModelText, {
+            const result = transpileModule(userModelText, {
                 compilerOptions: tsConfig,
                 fileName,
                 transformers: {
@@ -96,17 +96,17 @@ describe('Classes - Transformer Plugin', () => {
         });
 
         it('should compile strict mode', () => {
-            let tsConfig: CompilerOptions = {
+            const tsConfig: CompilerOptions = {
                 module: ModuleKind.CommonJS,
                 target: ScriptTarget.ESNext,
                 noEmitHelpers: true,
                 strict: true,
             };
 
-            let fileName = 'user.model.ts';
-            let programFixture = createProgram([fileName], tsConfig);
+            const fileName = 'user.model.ts';
+            const programFixture = createProgram([fileName], tsConfig);
 
-            let result = transpileModule(userModelTextStrict, {
+            const result = transpileModule(userModelTextStrict, {
                 compilerOptions: tsConfig,
                 fileName,
                 transformers: {
@@ -121,17 +121,17 @@ describe('Classes - Transformer Plugin', () => {
         });
 
         it('should compile strict mode for es2015', () => {
-            let tsConfig: CompilerOptions = {
+            const tsConfig: CompilerOptions = {
                 module: ModuleKind.ES2015,
                 target: ScriptTarget.ESNext,
                 noEmitHelpers: true,
                 strict: true,
             };
 
-            let fileName = 'user.model.ts';
-            let programFixture = createProgram([fileName], tsConfig);
+            const fileName = 'user.model.ts';
+            const programFixture = createProgram([fileName], tsConfig);
 
-            let result = transpileModule(userModelTextStrict, {
+            const result = transpileModule(userModelTextStrict, {
                 compilerOptions: tsConfig,
                 fileName,
                 transformers: {
@@ -147,18 +147,18 @@ describe('Classes - Transformer Plugin', () => {
     });
     describe('issue 486', () => {
         it('should compile', () => {
-            let tsConfig: CompilerOptions = {
+            const tsConfig: CompilerOptions = {
                 module: ModuleKind.CommonJS,
                 target: ScriptTarget.ESNext,
                 noEmitHelpers: true,
             };
 
-            let createSkillFileName = 'create-skill.dto.ts';
-            let createSkillProgramStructure = createProgram(
+            const createSkillFileName = 'create-skill.dto.ts';
+            const createSkillProgramStructure = createProgram(
                 [createSkillFileName],
                 tsConfig
             );
-            let createSkillResult = transpileModule(
+            const createSkillResult = transpileModule(
                 createSkillRequestDtoText,
                 {
                     compilerOptions: tsConfig,
@@ -177,12 +177,12 @@ describe('Classes - Transformer Plugin', () => {
                 compiledCreateSkillRequestDto
             );
 
-            let skillEntityFileName = 'skill.entity.ts';
-            let skillEntityProgramStructure = createProgram(
+            const skillEntityFileName = 'skill.entity.ts';
+            const skillEntityProgramStructure = createProgram(
                 [skillEntityFileName],
                 tsConfig
             );
-            let skillEntityResult = transpileModule(skillEntityText, {
+            const skillEntityResult = transpileModule(skillEntityText, {
                 compilerOptions: tsConfig,
                 fileName: skillEntityFileName,
                 transformers: {
