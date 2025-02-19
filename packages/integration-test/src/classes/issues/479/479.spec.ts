@@ -14,7 +14,7 @@ export class GetIdpsResponse {
 }
 
 describe('Issue 479', () => {
-    const mapper = createMapper({ strategyInitializer: classes() });
+    let mapper = createMapper({ strategyInitializer: classes() });
 
     it('should map properly', () => {
         createMap(
@@ -27,15 +27,15 @@ describe('Issue 479', () => {
         );
         createMap(mapper, GetIdpsResponse);
 
-        const idp = new Idp();
+        let idp = new Idp();
         idp.url = 'url';
         idp.id = 123;
         idp.entityId = '123';
         idp.name = 'name';
-        const response = new GetIdpsResponse();
+        let response = new GetIdpsResponse();
         response.results = [idp];
 
-        const mapped = mapper.map(response, GetIdpsResponse);
+        let mapped = mapper.map(response, GetIdpsResponse);
         expect(mapped).toBeTruthy();
         expect(mapped.results[0].defaultEnvironmentLabel).toEqual(
             response.results[0].name
