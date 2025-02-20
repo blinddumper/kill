@@ -12,25 +12,25 @@ export function getUser(
         avatar?: Partial<Avatar>;
     } = {}
 ) {
-    const address1: Address = {
+    let address1: Address = {
         street: '123 Acme Dr',
         city: 'Sim',
         state: 'Show Me',
     };
 
-    const address2: Address = {
+    let address2: Address = {
         street: '456 Rubik Dr',
         city: 'Some',
         state: 'October',
     };
 
-    const avatar = {
+    let avatar = {
         source: 'Internet',
         url: 'url.com',
         ...(partials.avatar ?? {}),
     } as Avatar;
 
-    const bio: Bio = {
+    let bio: Bio = {
         text: 'Introvert-ish',
         birthday: new Date('10/14/1991'),
         addresses: [address1, address2],
@@ -38,7 +38,7 @@ export function getUser(
         ...(partials.bio ?? {}),
     };
 
-    const userJob = {
+    let userJob = {
         title: 'Developer',
         annualSalary: 99999,
         ...(partials.job ?? {}),
@@ -66,25 +66,25 @@ export function getPascalUser(
         avatar?: Partial<PascalAvatar>;
     } = {}
 ) {
-    const address1: PascalAddress = {
+    let address1: PascalAddress = {
         Street: '123 Acme Dr',
         City: 'Sim',
         State: 'Show Me',
     };
 
-    const address2: PascalAddress = {
+    let address2: PascalAddress = {
         Street: '456 Rubik Dr',
         City: 'Some',
         State: 'October',
     };
 
-    const avatar = {
+    let avatar = {
         Source: 'Internet',
         Url: 'url.com',
         ...(partials.avatar ?? {}),
     } as PascalAvatar;
 
-    const userBio: PascalBio = {
+    let userBio: PascalBio = {
         Text: 'Introvert-ish',
         Birthday: new Date('10/14/1991'),
         Addresses: [address1, address2],
@@ -92,7 +92,7 @@ export function getPascalUser(
         ...(partials.bio ?? {}),
     };
 
-    const userJob = {
+    let userJob = {
         Title: 'Developer',
         AnnualSalary: 99999,
         ...(partials.job ?? {}),
@@ -120,25 +120,25 @@ export function getSnakeUser(
         avatar?: Partial<SnakeAvatar>;
     } = {}
 ) {
-    const address1: SnakeAddress = {
+    let address1: SnakeAddress = {
         street: '123 Acme Dr',
         city: 'Sim',
         state: 'Show Me',
     };
 
-    const address2: SnakeAddress = {
+    let address2: SnakeAddress = {
         street: '456 Rubik Dr',
         city: 'Some',
         state: 'October',
     };
 
-    const avatar = {
+    let avatar = {
         source: 'Internet',
         url: 'url.com',
         ...(partials.avatar ?? {}),
     } as SnakeAvatar;
 
-    const userBio: SnakeBio = {
+    let userBio: SnakeBio = {
         text: 'Introvert-ish',
         birthday: new Date('10/14/1991'),
         addresses: [address1, address2],
@@ -146,7 +146,7 @@ export function getSnakeUser(
         ...(partials.bio ?? {}),
     };
 
-    const userJob = {
+    let userJob = {
         title: 'Developer',
         annual_salary: 99999,
         ...(partials.job ?? {}),
