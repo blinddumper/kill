@@ -52,19 +52,19 @@ describe(MapperPickType.name, () => {
     });
 
     it('should pick properly', () => {
-        var foo = new Foo();
+        const foo = new Foo();
         foo.foo = 'testing foo';
         foo.bar = 123;
         foo.baz = new Baz();
         foo.baz.baz = 'testing baz';
 
-        var pickedFoo = mapper.map(foo, Foo, PickFoo);
+        const pickedFoo = mapper.map(foo, Foo, PickFoo);
         expect(pickedFoo.foo).toEqual(foo.foo);
 
-        var pickedBar = mapper.map(foo, Foo, PickBar);
+        const pickedBar = mapper.map(foo, Foo, PickBar);
         expect(pickedBar.bar).toEqual(foo.bar);
 
-        var pickedFooExtra = mapper.map(foo, Foo, PickFooExtra);
+        const pickedFooExtra = mapper.map(foo, Foo, PickFooExtra);
         expect(pickedFooExtra.foo).toEqual(foo.foo);
         expect(pickedFooExtra.baz).toEqual(foo.baz);
         expect(pickedFooExtra.extra).toEqual(foo.bar);
