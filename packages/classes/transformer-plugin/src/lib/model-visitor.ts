@@ -61,7 +61,7 @@ export class ModelVisitor {
         context: TransformationContext,
         program: Program
     ): SourceFile {
-        var typeChecker = program.getTypeChecker();
+        const typeChecker = program.getTypeChecker();
         ModelVisitor.isCommonJS =
             context.getCompilerOptions().module === ModuleKind.CommonJS;
 
@@ -69,7 +69,7 @@ export class ModelVisitor {
             ctx: TransformationContext,
             sf: SourceFile
         ): Visitor {
-            var nodeVisitor: Visitor = (node) => {
+            const nodeVisitor: Visitor = (node) => {
                 // if there is import, save the cloned in our importsMap for the file
                 if (isImportDeclaration(node)) {
                     ModelVisitor.importsMap.set(
@@ -98,8 +98,8 @@ export class ModelVisitor {
                     isPropertyDeclaration(node) ||
                     isGetAccessorDeclaration(node)
                 ) {
-                    var decorators = getDecorators(node);
-                    var existingAutoMapDecorator =
+                    const decorators = getDecorators(node);
+                    const existingAutoMapDecorator =
                         getDecoratorOrUndefinedByNames(
                             [AUTOMAPPER_DECORATOR_NAME],
                             decorators
@@ -110,7 +110,7 @@ export class ModelVisitor {
                         return node;
                     }
 
-                    var isPropertyStaticOrPrivate = (
+                    const isPropertyStaticOrPrivate = (
                         node.modifiers || []
                     ).some(
                         (modifier) =>
@@ -125,9 +125,9 @@ export class ModelVisitor {
                     }
 
                     // Check jsDoc for ignore tag
-                    var jsDocKey = JSDOC_KEY as keyof typeof node;
+                    const jsDocKey = JSDOC_KEY as keyof typeof node;
                     if (node[jsDocKey]) {
-                        var ignoreTag = getAllJSDocTags(
+                        const ignoreTag = getAllJSDocTags(
                             node[jsDocKey],
                             (tag): tag is JSDocTag =>
                                 tag.tagName.escapedText === AUTOMAP_IGNORE_TAG
@@ -152,7 +152,7 @@ export class ModelVisitor {
             return nodeVisitor;
         }
 
-        var visitedSourceFile = visitNode(
+        const visitedSourceFile = visitNode(
             sourceFile,
             nodeVisitorFactory(context, sourceFile)
         );
@@ -183,7 +183,7 @@ export class ModelVisitor {
         classNode: ClassDeclaration,
         factory: NodeFactory
     ): ClassDeclaration {
-        var classMetadata = this.getClassMetadata(classNode);
+        const classMetadata = this.getClassMetadata(classNode);
 
         // return early, no class metadata
         if (!classMetadata) {
@@ -214,7 +214,7 @@ export class ModelVisitor {
          *    ['property2', {type, depth}]
          *  ]
          */
-        var metadataAsReturnBlock = factory.createArrayLiteralExpression(
+        const metadataAsReturnBlock = factory.createArrayLiteralExpression(
             Object.entries(metadata).reduce(
                 (expressions, [propertyKey, propertyMetadata]) => {
                     if (propertyMetadata) {
@@ -257,15 +257,15 @@ export class ModelVisitor {
         metadata: ObjectLiteralExpression, // { type, depth }
         sourceFile: SourceFile
     ): PropertyDeclaration | GetAccessorDeclaration {
-        var hostClass = node.parent;
-        var className = (hostClass as ClassDeclaration).name?.getText();
+        const hostClass = node.parent;
+        const className = (hostClass as ClassDeclaration).name?.getText();
         // cannot find the class of this property, skip
         if (!className) {
             return node;
         }
 
-        var existingMetadata = this.metadataMap.get(className) || {};
-        var propertyName = node.name?.getText(sourceFile);
+        const existingMetadata = this.metadataMap.get(className) || {};
+        const propertyName = node.name?.getText(sourceFile);
 
         // defensive, no name for this property, skip
         // or this property name is computed like: object[computed]
@@ -291,7 +291,7 @@ export class ModelVisitor {
     ) {
         // try getting type from typeChecker
         let type = typeChecker.getTypeAtLocation(node);
-        var typeNode = node.type;
+        const typeNode = node.type;
 
         // no type for property node, skip
         if (!type || !typeNode) return node;
@@ -302,10 +302,10 @@ export class ModelVisitor {
         }
 
         // typeReference is [the type, if the type is array or not]
-        var typeReference = getTypeReference(type, typeNode, typeChecker);
+        const typeReference = getTypeReference(type, typeNode, typeChecker);
 
         if (!typeReference[0]) {
-            var typeReferenceFromNodeType =
+            const typeReferenceFromNodeType =
                 this.tryGetTypeReferenceFromNodeType(node);
             if (typeReferenceFromNodeType) {
                 typeReference[0] = typeReferenceFromNodeType;
@@ -318,7 +318,7 @@ export class ModelVisitor {
         // if typeReference includes an import statement, extract the correct import symbol
         if (typeReference[0].includes('import')) {
             if (ModelVisitor.isCommonJS) {
-                var replacedImportPath = replaceImportPath(
+                const replacedImportPath = replaceImportPath(
                     typeReference[0],
                     sourceFile.fileName
                 );
@@ -326,7 +326,7 @@ export class ModelVisitor {
                     typeReference[0] = replacedImportPath;
                 }
             } else {
-                var typeName = typeReference[0].split('.').pop();
+                const typeName = typeReference[0].split('.').pop();
                 if (typeName) {
                     typeReference[0] = typeName;
                 }
