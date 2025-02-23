@@ -28,7 +28,7 @@ import {
 
 describe('Map - Deep Nest models', () => {
     describe('Without naming conventions', () => {
-        const mapper = createMapper({ strategyInitializer: pojos() });
+        let mapper = createMapper({ strategyInitializer: pojos() });
 
         beforeEach(() => {
             createDeepNestMetadata();
@@ -49,7 +49,7 @@ describe('Map - Deep Nest models', () => {
             createMap<FooFoo, FooFooDto>(mapper, 'FooFoo', 'FooFooDto');
             createMap<Foo, FooDto>(mapper, 'Foo', 'FooDto');
 
-            const foo: Foo = {
+            let foo: Foo = {
                 foo: {
                     foo: {
                         foo: 'some string',
@@ -57,14 +57,14 @@ describe('Map - Deep Nest models', () => {
                 },
             };
 
-            const dto = mapper.map<Foo, FooDto>(foo, 'Foo', 'FooDto');
+            let dto = mapper.map<Foo, FooDto>(foo, 'Foo', 'FooDto');
             expect(dto).toBeTruthy();
             expect(dto.foo.foo.foo).toEqual('some string');
         });
     });
 
     describe('With naming conventions', () => {
-        const mapper = createMapper({
+        let mapper = createMapper({
             strategyInitializer: pojos(),
             namingConventions: {
                 source: new CamelCaseNamingConvention(),
@@ -95,7 +95,7 @@ describe('Map - Deep Nest models', () => {
             );
             createMap<FooBar, FooBarDto>(mapper, 'FooBar', 'FooBarDto');
 
-            const dto = mapper.map<FooBar, FooBarDto>(
+            let dto = mapper.map<FooBar, FooBarDto>(
                 { fooBar: { fooBarBaz: { fooBarBazQux: 'some foo bar' } } },
                 'FooBar',
                 'FooBarDto'
@@ -107,7 +107,7 @@ describe('Map - Deep Nest models', () => {
     });
 
     describe('With custom mapping configurations', () => {
-        const mapper = createMapper({ strategyInitializer: pojos() });
+        let mapper = createMapper({ strategyInitializer: pojos() });
 
         beforeEach(() => {
             createDeepNestMetadata();
@@ -127,8 +127,8 @@ describe('Map - Deep Nest models', () => {
                 forMember((d) => d.foo, fromValue('FooFooFoo override'))
             );
 
-            const foo: FooFooFoo = { foo: 'some string' };
-            const dto = mapper.map<FooFooFoo, FooFooFooDto>(
+            let foo: FooFooFoo = { foo: 'some string' };
+            let dto = mapper.map<FooFooFoo, FooFooFooDto>(
                 foo,
                 'FooFooFoo',
                 'FooFooFooDto'
@@ -149,12 +149,12 @@ describe('Map - Deep Nest models', () => {
                 forMember((d) => d.foo.foo, fromValue('FooFoo override'))
             );
 
-            const foo: FooFoo = {
+            let foo: FooFoo = {
                 foo: {
                     foo: 'some string',
                 },
             };
-            const dto = mapper.map<FooFoo, FooFooDto>(
+            let dto = mapper.map<FooFoo, FooFooDto>(
                 foo,
                 'FooFoo',
                 'FooFooDto'
@@ -176,14 +176,14 @@ describe('Map - Deep Nest models', () => {
                 forMember((d) => d.foo.foo.foo, fromValue('Foo override'))
             );
 
-            const foo: Foo = {
+            let foo: Foo = {
                 foo: {
                     foo: {
                         foo: 'some string',
                     },
                 },
             };
-            const dto = mapper.map<Foo, FooDto>(foo, 'Foo', 'FooDto');
+            let dto = mapper.map<Foo, FooDto>(foo, 'Foo', 'FooDto');
             expect(dto.foo.foo.foo).toEqual('Foo override');
         });
     });
