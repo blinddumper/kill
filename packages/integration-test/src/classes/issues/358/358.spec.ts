@@ -13,7 +13,7 @@ import {
 } from './account';
 
 describe('Issue 358', () => {
-    let mapper = createMapper({
+    const mapper = createMapper({
         strategyInitializer: classes(),
         namingConventions: new CamelCaseNamingConvention(),
     });
@@ -56,17 +56,17 @@ describe('Issue 358', () => {
 });
 
 function getAccounts() {
-    let account = makeAccount();
+    const account = makeAccount();
     return timer(500).pipe(map(() => [account]));
 }
 
 function getAccount() {
-    let account = makeAccount();
+    const account = makeAccount();
     return timer(500).pipe(map(() => account));
 }
 
 function makeAccount() {
-    let account = new AccountEntity();
+    const account = new AccountEntity();
 
     account.id = '123';
     account.email = 'mail';
