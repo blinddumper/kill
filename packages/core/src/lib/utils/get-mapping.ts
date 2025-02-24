@@ -13,22 +13,22 @@ export function getMapping(
     allowNull = false
 ): Mapping {
     // turn string into symbol for identifier
-    let sourceIdentifier: MetadataIdentifier =
+    const sourceIdentifier: MetadataIdentifier =
         typeof source === 'string' ? Symbol.for(source) : source;
-    let destinationIdentifier: MetadataIdentifier =
+    const destinationIdentifier: MetadataIdentifier =
         typeof destination === 'string' ? Symbol.for(destination) : destination;
 
-    let mapping = getMappings(mapper)
+    const mapping = getMappings(mapper)
         .get(sourceIdentifier)
         ?.get(destinationIdentifier);
 
     if (mapping == null && !allowNull) {
-        let sourceName =
+        const sourceName =
             typeof source === 'function' ? (source.name || String(source)) : String(source);
-        let destinationName =
+        const destinationName =
             typeof destination === 'function' ? (destination.name || String(destination)) : String(destination);
-        let errorHandler = getErrorHandler(mapper);
-        let errorMessage = `Mapping is not found for ${sourceName} and ${destinationName}`;
+        const errorHandler = getErrorHandler(mapper);
+        const errorMessage = `Mapping is not found for ${sourceName} and ${destinationName}`;
         errorHandler.handle(errorMessage);
         throw new Error(errorMessage);
     }
