@@ -30,7 +30,7 @@ export class UserResponse {
 }
 
 describe('Issue 497', () => {
-    const mapper = createMapper({
+    let mapper = createMapper({
         strategyInitializer: classes(),
         namingConventions: new CamelCaseNamingConvention(),
     });
@@ -38,12 +38,12 @@ describe('Issue 497', () => {
     it('should map properly', () => {
         createMap(mapper, UserEntity, UserResponse);
 
-        const user = new UserEntity();
+        let user = new UserEntity();
         user.id = 123;
         user.name = 'Chau';
         user.sharedInfo = 'info';
 
-        const responses = mapper.mapArray([user], UserEntity, UserResponse);
+        let responses = mapper.mapArray([user], UserEntity, UserResponse);
         expect(responses).toEqual([
             { id: 123, name: 'Chau', sharedInfo: 'info' },
         ]);
