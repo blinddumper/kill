@@ -12,7 +12,7 @@ import { Bio, Job, User } from './user';
 import { BioDto, UserDto } from './user.dto';
 
 describe('Docs - Tutorial', () => {
-    const mapper = createMapper({ strategyInitializer: classes() });
+    let mapper = createMapper({ strategyInitializer: classes() });
 
     beforeEach(() => {
         createMap(
@@ -38,7 +38,7 @@ describe('Docs - Tutorial', () => {
     });
 
     it('should map correctly', () => {
-        const user = new User();
+        let user = new User();
         user.firstName = 'Chau';
         user.lastName = 'Tran';
         user.username = 'ctran';
@@ -50,7 +50,7 @@ describe('Docs - Tutorial', () => {
         user.bio.job.title = 'Developer';
         user.bio.job.salary = 99999;
 
-        const dto = mapper.map(user, User, UserDto);
+        let dto = mapper.map(user, User, UserDto);
         expect(dto).toBeTruthy();
         console.log(dto);
     });
