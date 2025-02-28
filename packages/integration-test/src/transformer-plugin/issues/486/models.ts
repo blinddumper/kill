@@ -1,4 +1,4 @@
-export let createSkillRequestDtoText = `
+export const createSkillRequestDtoText = `
 class CreateSkillRequestDto {
   readonly label: string
   readonly value: string
@@ -6,7 +6,7 @@ class CreateSkillRequestDto {
 }
 `;
 
-export let compiledCreateSkillRequestDto = `class CreateSkillRequestDto {
+export const compiledCreateSkillRequestDto = `class CreateSkillRequestDto {
     label;
     value;
     categories;
@@ -20,7 +20,7 @@ export let compiledCreateSkillRequestDto = `class CreateSkillRequestDto {
 }
 `;
 
-export let skillEntityText = `
+export const skillEntityText = `
 abstract class QBaseEntity {
   _id: ObjectID
   createdDateTime: Date
@@ -43,7 +43,7 @@ class SkillEntity extends QBaseEntity {
 }
 `;
 
-export let compiledSkillEntity = `class QBaseEntity {
+export const compiledSkillEntity = `class QBaseEntity {
     _id;
     createdDateTime;
     updatedDateTime;
