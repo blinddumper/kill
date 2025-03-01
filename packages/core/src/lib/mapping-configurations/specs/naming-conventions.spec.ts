@@ -5,11 +5,11 @@ import { MappingClassId } from '../../types';
 import { namingConventions } from '../naming-conventions';
 
 describe(namingConventions.name, () => {
-    let camelCaseNamingConvention = new CamelCaseNamingConvention();
-    let pascalCaseNamingConvention = new PascalCaseNamingConvention();
+    const camelCaseNamingConvention = new CamelCaseNamingConvention();
+    const pascalCaseNamingConvention = new PascalCaseNamingConvention();
 
     it('should update namingConventions for the mapping', () => {
-        let mapping = [] as unknown as Mapping;
+        const mapping = [] as unknown as Mapping;
         namingConventions(camelCaseNamingConvention)(mapping);
 
         expect(mapping[MappingClassId.namingConventions]).toEqual([
