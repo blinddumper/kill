@@ -1,4 +1,4 @@
-let { getJestProjects } = require('@nrwl/jest');
+const { getJestProjects } = require('@nrwl/jest');
 
 export default {
     projects: getJestProjects(),
