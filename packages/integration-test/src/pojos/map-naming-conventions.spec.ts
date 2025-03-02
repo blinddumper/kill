@@ -32,7 +32,7 @@ import { getPascalUser, getSnakeUser, getUser } from './utils/get-user';
 
 describe('Map - Naming Conventions', () => {
     describe('Pascal -> Camel', () => {
-        const mapper = createMapper({
+        let mapper = createMapper({
             strategyInitializer: pojos(),
             namingConventions: {
                 source: new PascalCaseNamingConvention(),
@@ -51,8 +51,8 @@ describe('Map - Naming Conventions', () => {
             addProfile(mapper, pascalBioProfile);
             addProfile(mapper, pascalUserProfile);
 
-            const user = getPascalUser();
-            const dto = mapper.map<PascalUser, UserDto>(
+            let user = getPascalUser();
+            let dto = mapper.map<PascalUser, UserDto>(
                 user,
                 'PascalUser',
                 'UserDto'
@@ -66,7 +66,7 @@ describe('Map - Naming Conventions', () => {
     });
 
     describe('Camel -> Pascal', () => {
-        const mapper = createMapper({
+        let mapper = createMapper({
             strategyInitializer: pojos(),
             namingConventions: {
                 source: new CamelCaseNamingConvention(),
@@ -85,8 +85,8 @@ describe('Map - Naming Conventions', () => {
             addProfile(mapper, bioProfile);
             addProfile(mapper, userProfile);
 
-            const user = getUser();
-            const dto = mapper.map<User, PascalUserDto>(
+            let user = getUser();
+            let dto = mapper.map<User, PascalUserDto>(
                 user,
                 'User',
                 'PascalUserDto'
@@ -100,7 +100,7 @@ describe('Map - Naming Conventions', () => {
     });
 
     describe('Snake -> Camel', () => {
-        const mapper = createMapper({
+        let mapper = createMapper({
             strategyInitializer: pojos(),
             namingConventions: {
                 source: new SnakeCaseNamingConvention(),
@@ -119,8 +119,8 @@ describe('Map - Naming Conventions', () => {
             addProfile(mapper, snakeBioProfile);
             addProfile(mapper, snakeUserProfile);
 
-            const user = getSnakeUser();
-            const dto = mapper.map<SnakeUser, UserDto>(
+            let user = getSnakeUser();
+            let dto = mapper.map<SnakeUser, UserDto>(
                 user,
                 'SnakeUser',
                 'UserDto'
@@ -134,7 +134,7 @@ describe('Map - Naming Conventions', () => {
     });
 
     describe('Camel -> Snake', () => {
-        const mapper = createMapper({
+        let mapper = createMapper({
             strategyInitializer: pojos(),
             namingConventions: {
                 source: new CamelCaseNamingConvention(),
@@ -153,8 +153,8 @@ describe('Map - Naming Conventions', () => {
             addProfile(mapper, bioProfile);
             addProfile(mapper, userProfile);
 
-            const user = getUser();
-            const dto = mapper.map<User, SnakeUserDto>(
+            let user = getUser();
+            let dto = mapper.map<User, SnakeUserDto>(
                 user,
                 'User',
                 'SnakeUserDto'
@@ -168,7 +168,7 @@ describe('Map - Naming Conventions', () => {
     });
 
     describe('Snake -> Pascal', () => {
-        const mapper = createMapper({
+        let mapper = createMapper({
             strategyInitializer: pojos(),
             namingConventions: {
                 source: new SnakeCaseNamingConvention(),
@@ -187,8 +187,8 @@ describe('Map - Naming Conventions', () => {
             addProfile(mapper, snakeBioProfile);
             addProfile(mapper, snakeUserProfile);
 
-            const user = getSnakeUser();
-            const dto = mapper.map<SnakeUser, PascalUserDto>(
+            let user = getSnakeUser();
+            let dto = mapper.map<SnakeUser, PascalUserDto>(
                 user,
                 'SnakeUser',
                 'PascalUserDto'
@@ -202,7 +202,7 @@ describe('Map - Naming Conventions', () => {
     });
 
     describe('Pascal -> Snake', () => {
-        const mapper = createMapper({
+        let mapper = createMapper({
             strategyInitializer: pojos(),
             namingConventions: {
                 source: new PascalCaseNamingConvention(),
@@ -221,8 +221,8 @@ describe('Map - Naming Conventions', () => {
             addProfile(mapper, pascalBioProfile);
             addProfile(mapper, pascalUserProfile);
 
-            const user = getPascalUser();
-            const dto = mapper.map<PascalUser, SnakeUserDto>(
+            let user = getPascalUser();
+            let dto = mapper.map<PascalUser, SnakeUserDto>(
                 user,
                 'PascalUser',
                 'SnakeUserDto'
