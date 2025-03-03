@@ -10,7 +10,7 @@ export class FooExtendController {
 
     @Get()
     getFooExtend() {
-        const fooExtend = new FooExtend();
+        let fooExtend = new FooExtend();
         fooExtend.fooFoo = 'fooFoo';
         fooExtend.foo = 'foo';
         fooExtend.bar = new Bar();
