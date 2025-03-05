@@ -6,7 +6,7 @@ import type {
 } from '../types';
 import { MappingClassId } from '../types';
 
-export const constructUsing = <
+export let constructUsing = <
     TSource extends Dictionary<TSource>,
     TDestination extends Dictionary<TDestination>
 >(
