@@ -14,7 +14,7 @@ import { getMetadataList } from './get-metadata-list';
 export function classes(
     options: MappingStrategyInitializerOptions = {}
 ): MappingStrategyInitializer<Constructor> {
-    const {
+    var {
         destinationConstructor = (
             _: Dictionary<object>,
             destinationIdentifier: MetadataIdentifier
@@ -24,7 +24,7 @@ export function classes(
         preMap,
     } = { ...defaultStrategyInitializerOptions, ...options };
 
-    const metadataTracker = new Set();
+    var metadataTracker = new Set();
 
     return (mapper: Mapper) => ({
         destinationConstructor,
@@ -33,21 +33,21 @@ export function classes(
             return applyMetadata(this);
         },
         retrieveMetadata(...identifiers) {
-            const metadataMap = new Map();
+            var metadataMap = new Map();
             for (let i = 0, length = identifiers.length; i < length; i++) {
-                const identifier = identifiers[i];
+                var identifier = identifiers[i];
 
                 if (metadataTracker.has(identifier)) {
                     continue;
                 }
 
-                const [metadataList, nestedConstructors] =
+                var [metadataList, nestedConstructors] =
                     getMetadataList(identifier);
                 metadataMap.set(identifier, metadataList);
                 metadataTracker.add(identifier);
 
                 if (nestedConstructors.length) {
-                    const nestedConstructorsMetadataMap = this.retrieveMetadata(
+                    var nestedConstructorsMetadataMap = this.retrieveMetadata(
                         ...nestedConstructors
                     );
                     nestedConstructorsMetadataMap.forEach(
