@@ -1,32 +1,32 @@
 import { CamelCaseNamingConvention } from '../camel-case-naming-convention';
 
 describe(CamelCaseNamingConvention.name, () => {
-    let one = ['Address'];
-    let two = ['Address', 'Street'];
-    let three = ['Formatted', 'Address', 'Street'];
-    let snakedOne = ['address'];
-    let snakedTwo = ['address', 'street'];
-    let snakedThree = ['formatted', 'address', 'street'];
-    let toSplit = 'formattedAddressStreet';
-    let camelCaseNamingConvention = new CamelCaseNamingConvention();
+    const one = ['Address'];
+    const two = ['Address', 'Street'];
+    const three = ['Formatted', 'Address', 'Street'];
+    const snakedOne = ['address'];
+    const snakedTwo = ['address', 'street'];
+    const snakedThree = ['formatted', 'address', 'street'];
+    const toSplit = 'formattedAddressStreet';
+    const camelCaseNamingConvention = new CamelCaseNamingConvention();
 
     it('should instantiate', () => {
         expect(camelCaseNamingConvention).toBeTruthy();
     });
 
     it('should split correctly', () => {
-        let split = toSplit
+        const split = toSplit
             .split(camelCaseNamingConvention.splittingExpression)
             .filter(Boolean);
         expect(split).toEqual(['formatted', 'Address', 'Street']);
     });
 
     it('should convert PascalCase to camelCase', () => {
-        let convertedOne =
+        const convertedOne =
             camelCaseNamingConvention.transformPropertyName(one);
-        let convertedTwo =
+        const convertedTwo =
             camelCaseNamingConvention.transformPropertyName(two);
-        let convertedThree =
+        const convertedThree =
             camelCaseNamingConvention.transformPropertyName(three);
         expect(convertedOne).toEqual('address');
         expect(convertedTwo).toEqual('addressStreet');
@@ -34,11 +34,11 @@ describe(CamelCaseNamingConvention.name, () => {
     });
 
     it('should convert lowercase (snake_case) to camelCase', () => {
-        let convertedOne =
+        const convertedOne =
             camelCaseNamingConvention.transformPropertyName(snakedOne);
-        let convertedTwo =
+        const convertedTwo =
             camelCaseNamingConvention.transformPropertyName(snakedTwo);
-        let convertedThree =
+        const convertedThree =
             camelCaseNamingConvention.transformPropertyName(snakedThree);
         expect(convertedOne).toEqual('address');
         expect(convertedTwo).toEqual('addressStreet');
