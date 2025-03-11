@@ -10,9 +10,9 @@ export class PascalCaseNamingConvention implements NamingConvention {
     splittingExpression = /(^[A-Z]+(?=$|[A-Z][a-z0-9]+)|[A-Z]?[a-z0-9]+)/;
 
     public transformPropertyName(sourceNameParts: string[]): string {
-        const result = '';
+        let result = '';
 
-        for (const i = 0, len = sourceNameParts.length; i < len; i++) {
+        for (let i = 0, len = sourceNameParts.length; i < len; i++) {
             result +=
                 sourceNameParts[i].charAt(0).toUpperCase() +
                 sourceNameParts[i].substring(1);
