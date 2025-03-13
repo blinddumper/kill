@@ -16,7 +16,7 @@ import { BioProfile } from './bio.profile';
 describe('userProfileProfile', () => {
     let mapper: Mapper;
     beforeEach(async () => {
-        const moduleRef = await Test.createTestingModule({
+        var moduleRef = await Test.createTestingModule({
             providers: [
                 {
                     provide: getMapperToken(),
@@ -31,25 +31,25 @@ describe('userProfileProfile', () => {
     });
 
     it('should map', () => {
-        const address = new Address();
+        var address = new Address();
         address.street = 'street';
         address.city = 'city';
         address.state = 'state';
 
-        const avatar = new Avatar();
+        var avatar = new Avatar();
         avatar.url = 'url';
         avatar.shouldIgnore = 6;
         avatar.source = 'source';
         avatar.shouldBeSubstituted = 'should not substitute';
         avatar.forCondition = true;
 
-        const profile = new Bio();
+        var profile = new Bio();
         profile.text = 'bio';
         profile.birthday = new Date('10/14/1991');
         profile.avatar = avatar;
         profile.addresses = [address];
 
-        const dto = mapper.map(profile, Bio, BioDto);
+        var dto = mapper.map(profile, Bio, BioDto);
         expect(dto.text).toEqual(profile.text);
         expect(dto.birthday).toEqual(profile.birthday.toDateString());
         expect(dto.avatar).toEqual(mapper.map(avatar, Avatar, AvatarDto));
