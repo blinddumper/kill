@@ -9,7 +9,7 @@ export function MapperPickType<T, K extends keyof T>(
     classRef: Constructor<T>,
     keys: readonly K[]
 ): MappedType<Pick<T, typeof keys[number]>> {
-    const isInheritedPredicate = (propertyKey: string) =>
+    let isInheritedPredicate = (propertyKey: string) =>
         keys.includes(propertyKey as K);
 
     class PickClassType {
