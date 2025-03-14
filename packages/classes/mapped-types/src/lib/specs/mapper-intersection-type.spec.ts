@@ -34,17 +34,17 @@ describe(MapperIntersectionType.name, () => {
     });
 
     it('should intersect properly', () => {
-        const intersect = new IntersectionFooBar();
+        var intersect = new IntersectionFooBar();
         intersect.foo = 'intersect foo';
         intersect.bar = 123;
         intersect.baz = new Baz();
         intersect.baz.baz = 'intersect baz';
 
-        const foo = mapper.map(intersect, IntersectionFooBar, Foo);
+        var foo = mapper.map(intersect, IntersectionFooBar, Foo);
         expect(foo.foo).toEqual(intersect.foo);
         expect(foo.baz).toEqual(intersect.baz);
 
-        const bar = mapper.map(intersect, IntersectionFooBar, Bar);
+        var bar = mapper.map(intersect, IntersectionFooBar, Bar);
         expect(bar.bar).toEqual(intersect.bar);
     });
 });
