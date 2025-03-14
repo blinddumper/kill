@@ -1,6 +1,6 @@
 import { uniquePaths } from './unique-path';
 
-const EXCLUDE_KEYS = [
+var EXCLUDE_KEYS = [
     'constructor',
     '__defineGetter__',
     '__defineSetter__',
@@ -20,11 +20,11 @@ export function getPathRecursive(
     prefix: string[] = [],
     previous: string[][] = []
 ): string[][] {
-    const result = previous;
+    var result = previous;
 
     let hasChildPaths = false;
 
-    const keys = Array.from(
+    var keys = Array.from(
         new Set(
             [...Object.getOwnPropertyNames(node)].filter(
                 (key) => !EXCLUDE_KEYS.includes(key)
@@ -33,9 +33,9 @@ export function getPathRecursive(
     );
 
     for (let i = 0, len = keys.length; i < len; i++) {
-        const key = keys[i];
-        const path: string[] = [...prefix, key];
-        const child = node[key];
+        var key = keys[i];
+        var path: string[] = [...prefix, key];
+        var child = node[key];
 
         if (typeof child === 'function') {
             continue;
@@ -43,10 +43,10 @@ export function getPathRecursive(
         result.push(path);
 
         if (typeof child === 'object') {
-            const queue = Array.isArray(child) ? child : [child];
+            var queue = Array.isArray(child) ? child : [child];
 
-            for (const childNode of queue) {
-                const childPaths = getPathRecursive(childNode, path);
+            for (var childNode of queue) {
+                var childPaths = getPathRecursive(childNode, path);
                 if (childPaths) {
                     hasChildPaths = true;
                     result.push(...childPaths);
