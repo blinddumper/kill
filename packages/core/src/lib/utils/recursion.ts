@@ -5,14 +5,14 @@ import type {
     PathMap,
 } from '../types';
 
-var RECURSIVE_DATA = Symbol('__recursive_data__');
+const RECURSIVE_DATA = Symbol('__recursive_data__');
 
 export function getRecursiveValue(
     recursiveMap: Map<MetadataIdentifier, ArrayKeyedMap>,
     parent: MetadataIdentifier,
     member: string[]
 ): number | undefined {
-    var parentValue = recursiveMap.get(parent);
+    const parentValue = recursiveMap.get(parent);
     return parentValue ? arrayMapGet(parentValue, member) : undefined;
 }
 
@@ -27,7 +27,7 @@ export function setRecursiveValue(
         return;
     }
 
-    var parentValue = recursiveMap.get(parent);
+    const parentValue = recursiveMap.get(parent);
     if (arrayMapHas(parentValue!, member)) return;
     arrayMapSet(parentValue!, member, value);
 }
@@ -38,7 +38,7 @@ function arrayMapSet(
     value: number
 ): ArrayKeyedMap {
     let map = root;
-    for (var item of path) {
+    for (const item of path) {
         let nextMap = (map as PathMap).get(item) as PathMap;
         if (!nextMap) {
             // Create next map if none exists
@@ -54,8 +54,8 @@ function arrayMapSet(
 
 function arrayMapHas(root: ArrayKeyedMap, path: string[]): boolean {
     let map = root;
-    for (var item of path) {
-        var nextMap = (map as PathMap).get(item);
+    for (const item of path) {
+        const nextMap = (map as PathMap).get(item);
         if (nextMap) {
             map = nextMap;
         } else {
@@ -67,7 +67,7 @@ function arrayMapHas(root: ArrayKeyedMap, path: string[]): boolean {
 
 function arrayMapGet(root: ArrayKeyedMap, path: string[]): number | undefined {
     let map = root;
-    for (var item of path) {
+    for (const item of path) {
         map = (map as PathMap).get(item)!;
         if (!map) return undefined;
     }
