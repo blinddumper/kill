@@ -10,7 +10,7 @@ import { SimpleUserDto } from './dtos/simple-user.dto';
 import { SimpleUser } from './models/simple-user';
 
 describe('Map Async Classes', () => {
-    const mapper = createMapper({ strategyInitializer: classes() });
+    let mapper = createMapper({ strategyInitializer: classes() });
 
     it('should map', async () => {
         createMap(
@@ -19,14 +19,14 @@ describe('Map Async Classes', () => {
             SimpleUserDto,
             forMember((d) => d.fullName, ignore()),
             afterMap(async (_, destination) => {
-                const fullName = await Promise.resolve().then(
+                let fullName = await Promise.resolve().then(
                     () => 'Tran Chau'
                 );
                 Object.assign(destination, { fullName });
             })
         );
 
-        const dto = await mapper.mapAsync(
+        let dto = await mapper.mapAsync(
             new SimpleUser('Chau', 'Tran'),
             SimpleUser,
             SimpleUserDto
