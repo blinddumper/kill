@@ -47,21 +47,21 @@ describe(MapperOmitType.name, () => {
     });
 
     it('should omit properly', () => {
-        const foo = new Foo();
+        var foo = new Foo();
         foo.foo = 'testing foo';
         foo.bar = 123;
         foo.baz = new Baz();
         foo.baz.baz = 'testing baz';
 
-        const omitFoo = mapper.map(foo, Foo, OmitFoo);
+        var omitFoo = mapper.map(foo, Foo, OmitFoo);
         expect(omitFoo.bar).toEqual(foo.bar);
         expect(omitFoo.baz).toEqual(foo.baz);
 
-        const omitBar = mapper.map(foo, Foo, OmitBar);
+        var omitBar = mapper.map(foo, Foo, OmitBar);
         expect(omitBar.foo).toEqual(foo.foo);
         expect(omitBar.baz).toEqual(foo.baz);
 
-        const omitFooExtra = mapper.map(foo, Foo, OmitFooExtra);
+        var omitFooExtra = mapper.map(foo, Foo, OmitFooExtra);
         expect(omitFooExtra.bar).toEqual(foo.bar);
         expect(omitFooExtra.extra).toEqual(foo.bar);
     });
