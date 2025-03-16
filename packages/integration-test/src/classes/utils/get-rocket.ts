@@ -14,35 +14,35 @@ import {
 } from '../models/rocket';
 
 export function getRocket(): Rocket {
-    const height = new Diameter();
+    let height = new Diameter();
     height.meters = 22.25;
     height.feet = 73;
 
-    const diameter = new Diameter();
+    let diameter = new Diameter();
     diameter.meters = 1.68;
     diameter.feet = 5.5;
 
-    const mass = new Mass();
+    let mass = new Mass();
     mass.kg = 30146;
     mass.lb = 66460;
 
-    const payloadWeight = new PayloadWeight();
+    let payloadWeight = new PayloadWeight();
     payloadWeight.id = 'leo';
     payloadWeight.name = 'Low Earth Orbit';
     payloadWeight.kg = 450;
     payloadWeight.lb = 992;
 
-    const payloadWeights = [payloadWeight];
+    let payloadWeights = [payloadWeight];
 
-    const firstStageThrustSeaLevel = new Thrust();
+    let firstStageThrustSeaLevel = new Thrust();
     firstStageThrustSeaLevel.kN = 420;
     firstStageThrustSeaLevel.lbf = 94000;
 
-    const firstStageThrustVacuum = new Thrust();
+    let firstStageThrustVacuum = new Thrust();
     firstStageThrustVacuum.kN = 480;
     firstStageThrustVacuum.lbf = 110000;
 
-    const firstStage = new FirstStage();
+    let firstStage = new FirstStage();
     firstStage.reusable = false;
     firstStage.engines = 1;
     firstStage.fuel_amount_tons = 44.3;
@@ -50,27 +50,27 @@ export function getRocket(): Rocket {
     firstStage.thrust_sea_level = firstStageThrustSeaLevel;
     firstStage.thrust_vacuum = firstStageThrustVacuum;
 
-    const secondStageThrust = new Thrust();
+    let secondStageThrust = new Thrust();
     secondStageThrust.kN = 31;
     secondStageThrust.lbf = 7000;
 
-    const compositeFairingHeight = new Diameter();
+    let compositeFairingHeight = new Diameter();
     compositeFairingHeight.meters = 3.5;
     compositeFairingHeight.feet = 11.5;
 
-    const compositeFairingDiameter = new Diameter();
+    let compositeFairingDiameter = new Diameter();
     compositeFairingDiameter.meters = 1.5;
     compositeFairingDiameter.feet = 4.9;
 
-    const payloadsCompositeFairing = new CompositeFairing();
+    let payloadsCompositeFairing = new CompositeFairing();
     payloadsCompositeFairing.height = compositeFairingHeight;
     payloadsCompositeFairing.diameter = compositeFairingDiameter;
 
-    const payloads = new Payloads();
+    let payloads = new Payloads();
     payloads.option_1 = 'composite fairing';
     payloads.composite_fairing = payloadsCompositeFairing;
 
-    const secondStage = new SecondStage();
+    let secondStage = new SecondStage();
     secondStage.reusable = false;
     secondStage.engines = 1;
     secondStage.fuel_amount_tons = 3.38;
@@ -78,19 +78,19 @@ export function getRocket(): Rocket {
     secondStage.thrust = secondStageThrust;
     secondStage.payloads = payloads;
 
-    const enginesIsp = new ISP();
+    let enginesIsp = new ISP();
     enginesIsp.sea_level = 267;
     enginesIsp.vacuum = 304;
 
-    const enginesThrustSeaLevel = new Thrust();
+    let enginesThrustSeaLevel = new Thrust();
     enginesThrustSeaLevel.kN = 420;
     enginesThrustSeaLevel.lbf = 94000;
 
-    const enginesThrustVacuum = new Thrust();
+    let enginesThrustVacuum = new Thrust();
     enginesThrustVacuum.kN = 480;
     enginesThrustVacuum.lbf = 110000;
 
-    const engines = new Engines();
+    let engines = new Engines();
     engines.number = 1;
     engines.type = 'merlin';
     engines.version = '1C';
@@ -102,11 +102,11 @@ export function getRocket(): Rocket {
     engines.thrust_vacuum = enginesThrustVacuum;
     engines.thrust_to_weight = 96;
 
-    const landingLegs = new LandingLegs();
+    let landingLegs = new LandingLegs();
     landingLegs.number = 0;
     landingLegs.material = null;
 
-    const rocket = new Rocket();
+    let rocket = new Rocket();
     rocket.id = 1;
     rocket.active = false;
     rocket.stages = 2;
