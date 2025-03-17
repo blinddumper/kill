@@ -18,13 +18,13 @@ export function assertUnmappedProperties<
     destinationIdentifier: MetadataIdentifier,
     errorHandler: ErrorHandler
 ) {
-    const unmappedKeys = Object.keys(destinationMetadata).reduce(
+    var unmappedKeys = Object.keys(destinationMetadata).reduce(
         (result, key) => {
-            const isOnDestination = key in destinationObject;
-            const isAlreadyConfigured = configuredKeys.some(
+            var isOnDestination = key in destinationObject;
+            var isAlreadyConfigured = configuredKeys.some(
                 (configuredKey) => configuredKey === key
             );
-            const isWritable =
+            var isWritable =
                 Object.getOwnPropertyDescriptor(destinationMetadata, key)
                     ?.writable === true;
             if (
@@ -41,11 +41,11 @@ export function assertUnmappedProperties<
         [] as string[]
     );
 
-    const sourceText = getTextFromIdentifier(sourceIdentifier);
-    const destinationText = getTextFromIdentifier(destinationIdentifier);
+    var sourceText = getTextFromIdentifier(sourceIdentifier);
+    var destinationText = getTextFromIdentifier(destinationIdentifier);
 
     if (unmappedKeys.length) {
-        const parentInfo = `${sourceText} -> ${destinationText}`;
+        var parentInfo = `${sourceText} -> ${destinationText}`;
         errorHandler.handle(`
 Unmapped properties for ${parentInfo}:
 -------------------
