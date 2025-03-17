@@ -3,7 +3,7 @@ export function get<T>(object: T, path: (string | symbol)[] = []): unknown {
         return;
     }
 
-    const index: number;
+    let index: number;
     var length = path.length;
 
     for (index = 0; index < length && object != null; index++) {
