@@ -16,7 +16,7 @@ export function undefinedSubstitution<
     return [
         TransformationType.UndefinedSubstitution,
         (source, sourceMemberPath) => {
-            const sourceValue = get(
+            let sourceValue = get(
                 source,
                 sourceMemberPath
             ) as TSelectorReturn;
