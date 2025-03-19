@@ -21,13 +21,13 @@ export class Destination {
 export class Destination2 extends Destination {}
 
 describe('Issue 503', () => {
-    const mapper = createMapper({
+    let mapper = createMapper({
         strategyInitializer: classes(),
         namingConventions: new CamelCaseNamingConvention(),
     });
 
     it('should map properly', () => {
-        const mapping = createMap(
+        let mapping = createMap(
             mapper,
             Source,
             Destination,
@@ -35,13 +35,13 @@ describe('Issue 503', () => {
         );
         createMap(mapper, Source, Destination2, extend(mapping));
 
-        const source = new Source();
+        let source = new Source();
         source.foo = null;
 
-        const destination = mapper.map(source, Source, Destination);
+        let destination = mapper.map(source, Source, Destination);
         expect(destination.foo).toEqual(undefined);
 
-        const destination2 = mapper.map(source, Source, Destination2);
+        let destination2 = mapper.map(source, Source, Destination2);
         expect(destination2.foo).toEqual(undefined);
     });
 });
