@@ -4,8 +4,8 @@ import { constructUsing } from '../construct-using';
 
 describe(constructUsing.name, () => {
     it('should update destinationConstructor for the mapping', () => {
-        const mapping = [] as unknown as Mapping;
-        const constructor = jest.fn();
+        let mapping = [] as unknown as Mapping;
+        let constructor = jest.fn();
         constructUsing(constructor)(mapping);
         expect(mapping[MappingClassId.destinationConstructor]).toBe(
             constructor
