@@ -9,7 +9,7 @@ import { SimpleUser } from './models/simple-user';
 import { simpleUserProfileFactory } from './profiles/simple-user.profile';
 
 describe('Map - Map Callback', () => {
-    let mapper = createMapper({
+    const mapper = createMapper({
         strategyInitializer: classes(),
         namingConventions: new CamelCaseNamingConvention(),
     });
@@ -19,17 +19,17 @@ describe('Map - Map Callback', () => {
     });
 
     it('should map with mapping callbacks', () => {
-        let beforeMap = jest.fn();
-        let afterMap = jest.fn();
+        const beforeMap = jest.fn();
+        const afterMap = jest.fn();
 
         addProfile(mapper, simpleUserProfileFactory({ beforeMap, afterMap }));
 
-        let simpleUser = new SimpleUser('Chau', 'Tran');
+        const simpleUser = new SimpleUser('Chau', 'Tran');
 
         expect(beforeMap).not.toHaveBeenCalled();
         expect(afterMap).not.toHaveBeenCalled();
 
-        let dto = mapper.map(simpleUser, SimpleUser, SimpleUserDto);
+        const dto = mapper.map(simpleUser, SimpleUser, SimpleUserDto);
         assertSimpleUser(dto, simpleUser);
 
         expect(beforeMap).toHaveBeenCalled();
@@ -37,17 +37,17 @@ describe('Map - Map Callback', () => {
     });
 
     it('should map with map callbacks', () => {
-        let beforeMap = jest.fn();
-        let afterMap = jest.fn();
+        const beforeMap = jest.fn();
+        const afterMap = jest.fn();
 
         addProfile(mapper, simpleUserProfileFactory());
 
-        let simpleUser = new SimpleUser('Chau', 'Tran');
+        const simpleUser = new SimpleUser('Chau', 'Tran');
 
         expect(beforeMap).not.toHaveBeenCalled();
         expect(afterMap).not.toHaveBeenCalled();
 
-        let dto = mapper.map(simpleUser, SimpleUser, SimpleUserDto, {
+        const dto = mapper.map(simpleUser, SimpleUser, SimpleUserDto, {
             beforeMap,
             afterMap,
         });
@@ -59,10 +59,10 @@ describe('Map - Map Callback', () => {
     });
 
     it('should run with map callbacks if both map/mapping callbacks are provided', () => {
-        let beforeMap = jest.fn();
-        let afterMap = jest.fn();
-        let mappingBeforeMap = jest.fn();
-        let mappingAfterMap = jest.fn();
+        const beforeMap = jest.fn();
+        const afterMap = jest.fn();
+        const mappingBeforeMap = jest.fn();
+        const mappingAfterMap = jest.fn();
 
         addProfile(
             mapper,
@@ -72,14 +72,14 @@ describe('Map - Map Callback', () => {
             })
         );
 
-        let simpleUser = new SimpleUser('Chau', 'Tran');
+        const simpleUser = new SimpleUser('Chau', 'Tran');
 
         expect(beforeMap).not.toHaveBeenCalled();
         expect(afterMap).not.toHaveBeenCalled();
         expect(mappingBeforeMap).not.toHaveBeenCalled();
         expect(mappingAfterMap).not.toHaveBeenCalled();
 
-        let dto = mapper.map(simpleUser, SimpleUser, SimpleUserDto, {
+        const dto = mapper.map(simpleUser, SimpleUser, SimpleUserDto, {
             beforeMap,
             afterMap,
         });
@@ -92,17 +92,17 @@ describe('Map - Map Callback', () => {
     });
 
     it('should skip mapping callbacks with mapArray', () => {
-        let beforeMap = jest.fn();
-        let afterMap = jest.fn();
+        const beforeMap = jest.fn();
+        const afterMap = jest.fn();
 
         addProfile(mapper, simpleUserProfileFactory({ beforeMap, afterMap }));
 
-        let simpleUser = new SimpleUser('Chau', 'Tran');
+        const simpleUser = new SimpleUser('Chau', 'Tran');
 
         expect(beforeMap).not.toHaveBeenCalled();
         expect(afterMap).not.toHaveBeenCalled();
 
-        let dtos = mapper.mapArray([simpleUser], SimpleUser, SimpleUserDto);
+        const dtos = mapper.mapArray([simpleUser], SimpleUser, SimpleUserDto);
         dtos.forEach((dto) => {
             assertSimpleUser(dto, simpleUser);
         });
@@ -112,17 +112,17 @@ describe('Map - Map Callback', () => {
     });
 
     it('should run map callbacks with mapArray', () => {
-        let beforeMap = jest.fn();
-        let afterMap = jest.fn();
+        const beforeMap = jest.fn();
+        const afterMap = jest.fn();
 
         addProfile(mapper, simpleUserProfileFactory());
 
-        let simpleUser = new SimpleUser('Chau', 'Tran');
+        const simpleUser = new SimpleUser('Chau', 'Tran');
 
         expect(beforeMap).not.toHaveBeenCalled();
         expect(afterMap).not.toHaveBeenCalled();
 
-        let dtos = mapper.mapArray([simpleUser], SimpleUser, SimpleUserDto, {
+        const dtos = mapper.mapArray([simpleUser], SimpleUser, SimpleUserDto, {
             beforeMap,
             afterMap,
         });
