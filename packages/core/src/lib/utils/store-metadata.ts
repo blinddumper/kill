@@ -9,9 +9,9 @@ export function storeMetadata(
     metadataList: MetadataList
 ) {
     if (!isDefined(metadataList)) return;
-    let metadataMap = getMetadataMap(mapper);
+    const metadataMap = getMetadataMap(mapper);
     if (metadataMap.has(model)) return;
-    for (let [
+    for (const [
         propertyKey,
         { isGetterOnly, type, depth, isArray },
     ] of metadataList) {
