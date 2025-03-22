@@ -48,13 +48,13 @@ class FooDto {
 }
 
 describe('Map - Extra Arguments', () => {
-    const mapper = createMapper({
+    var mapper = createMapper({
         strategyInitializer: classes(),
         namingConventions: new CamelCaseNamingConvention(),
     });
 
     beforeEach(() => {
-        const resolver: Resolver<Foo, { multiplier: number }, number> = {
+        var resolver: Resolver<Foo, { multiplier: number }, number> = {
             resolve(
                 source: Foo,
                 { multiplier }: { multiplier: number }
@@ -89,7 +89,7 @@ describe('Map - Extra Arguments', () => {
     });
 
     it('should map with arguments properly', () => {
-        const foo = new Foo(2);
+        var foo = new Foo(2);
 
         let dto = mapper.map(foo, Foo, FooDto, {
             extraArgs: () => ({ multiplier: 2 }),
@@ -105,7 +105,7 @@ describe('Map - Extra Arguments', () => {
     });
 
     it('should map with arguments for nested model', () => {
-        const foo = new Foo(2);
+        var foo = new Foo(2);
         let dto = mapper.map(foo, Foo, FooDto, {
             extraArgs: () => ({ multiplier: 2 }),
         });
@@ -124,7 +124,7 @@ describe('Map - Extra Arguments', () => {
 });
 
 describe('Map - Extra Arguments deep', () => {
-    const mapper = createMapper({
+    var mapper = createMapper({
         strategyInitializer: classes(),
         namingConventions: new CamelCaseNamingConvention(),
     });
@@ -159,8 +159,8 @@ describe('Map - Extra Arguments deep', () => {
     });
 
     it('should transfer extra args to nested map', () => {
-        const foo = new Foo(2);
-        const dto = mapper.map(foo, Foo, FooDto, {
+        var foo = new Foo(2);
+        var dto = mapper.map(foo, Foo, FooDto, {
             extraArgs: () => ({ multiplier: 3, concat: 'concat me' }),
         });
 
