@@ -14,7 +14,7 @@ describe('Map - Getter Only', () => {
         foo!: string;
     }
 
-    const mapper = createMapper({ strategyInitializer: classes() });
+    let mapper = createMapper({ strategyInitializer: classes() });
 
     beforeEach(() => {
         createMap(mapper, Foo, FooDto);
@@ -26,15 +26,15 @@ describe('Map - Getter Only', () => {
     });
 
     it('should map correctly for Foo as Source', () => {
-        const dto = mapper.map(new Foo(), Foo, FooDto);
+        let dto = mapper.map(new Foo(), Foo, FooDto);
         expect(dto.foo).toEqual('getter only');
     });
 
     it('should map correctly for Foo as Destination', () => {
-        const dto = new FooDto();
+        let dto = new FooDto();
         dto.foo = 'from dto';
 
-        const foo = mapper.map(dto, FooDto, Foo);
+        let foo = mapper.map(dto, FooDto, Foo);
         expect(foo.foo).toEqual('getter only');
     });
 });
