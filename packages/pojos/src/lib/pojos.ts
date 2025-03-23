@@ -10,7 +10,7 @@ import { PojosMetadataMap } from './metadata-map';
 export function pojos(
     options: MappingStrategyInitializerOptions = {}
 ): MappingStrategyInitializer<symbol> {
-    var {
+    const {
         destinationConstructor = () => ({}),
         applyMetadata,
         postMap,
@@ -24,10 +24,10 @@ export function pojos(
             return applyMetadata(this);
         },
         retrieveMetadata(...identifiers): Map<symbol, MetadataList> {
-            var metadataMap = new Map();
+            const metadataMap = new Map();
 
             for (let i = 0, length = identifiers.length; i < length; i++) {
-                var identifier = identifiers[i];
+                const identifier = identifiers[i];
                 metadataMap.set(
                     identifier,
                     PojosMetadataMap.retrieve(identifier)
