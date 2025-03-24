@@ -7,7 +7,7 @@ import type {
 import { MappingClassId } from '../types';
 import { normalizeNamingConventions } from '../utils/normalize-naming-conventions';
 
-export const namingConventions = <
+export let namingConventions = <
     TSource extends Dictionary<TSource>,
     TDestination extends Dictionary<TDestination>
 >(
