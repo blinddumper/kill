@@ -13,7 +13,7 @@ import { userProfile } from './profiles/user.profile';
 import { getUser } from './utils/get-user';
 
 describe('Map - Mutation', () => {
-    let mapper = createMapper({
+    const mapper = createMapper({
         strategyInitializer: pojos(),
         namingConventions: new CamelCaseNamingConvention(),
     });
@@ -29,8 +29,8 @@ describe('Map - Mutation', () => {
         addProfile(mapper, bioProfile);
         addProfile(mapper, userProfile);
 
-        let user = getUser();
-        let dto = {} as UserDto;
+        const user = getUser();
+        const dto = {} as UserDto;
         mapper.mutate<User, UserDto>(user, dto, 'User', 'UserDto');
         expect(dto.first).toEqual(user.firstName);
         expect(dto.last).toEqual(user.lastName);
@@ -48,8 +48,8 @@ describe('Map - Mutation', () => {
         addProfile(mapper, bioProfile);
         addProfile(mapper, userProfile);
 
-        let user = getUser();
-        let dtos: UserDto[] = [];
+        const user = getUser();
+        const dtos: UserDto[] = [];
         mapper.mutateArray<User, UserDto>([user], dtos, 'User', 'UserDto');
         dtos.forEach((dto) => {
             expect(dto.first).toEqual(user.firstName);
