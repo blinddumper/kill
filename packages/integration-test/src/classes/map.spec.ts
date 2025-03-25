@@ -9,7 +9,7 @@ import { userProfile } from './profiles/user.profile';
 import { getUser } from './utils/get-user';
 
 describe('Map Classes', () => {
-    const mapper = createMapper({
+    let mapper = createMapper({
         strategyInitializer: classes(),
         namingConventions: new CamelCaseNamingConvention(),
     });
@@ -19,22 +19,22 @@ describe('Map Classes', () => {
     });
 
     it('should return null if source is null', () => {
-        const dto = mapper.map(null, User, UserDto);
+        let dto = mapper.map(null, User, UserDto);
         expect(dto).toEqual(null);
     });
 
     it('should return undefined if source is undefined', () => {
-        const dto = mapper.map(undefined, User, UserDto);
+        let dto = mapper.map(undefined, User, UserDto);
         expect(dto).toEqual(undefined);
     });
 
     it('should return [] if mapped with []', () => {
-        const dtos = mapper.mapArray([], User, UserDto);
+        let dtos = mapper.mapArray([], User, UserDto);
         expect(dtos).toEqual([]);
     });
 
     it('should throw error if mapped without the mapping', () => {
-        const user = getUser();
+        let user = getUser();
         expect(() => mapper.map(user, User, UserDto)).toThrow();
     });
 
@@ -44,7 +44,7 @@ describe('Map Classes', () => {
       addProfile(mapper, bioProfile);
       addProfile(mapper, userProfile);
 
-      const user = getUser();
+      let user = getUser();
       mapper.map(user, User, UserDto);
 
       expect(Object.isFrozen(user.bio.avatar)).toBe(false);
@@ -60,7 +60,7 @@ describe('Map Classes', () => {
         addProfile(mapper, bioProfile);
         addProfile(mapper, userProfile);
 
-        const user = getUser();
+        let user = getUser();
         mapper.mapArray([user], User, UserDto);
 
         expect(Object.isFrozen(user.bio.avatar)).toBe(false);
@@ -76,8 +76,8 @@ describe('Map Classes', () => {
         addProfile(mapper, bioProfile);
         addProfile(mapper, userProfile);
 
-        const user = getUser();
-        const dto = mapper.map(user, User, UserDto);
+        let user = getUser();
+        let dto = mapper.map(user, User, UserDto);
 
         expect(Object.isFrozen(dto.bio.avatar)).toBe(false);
         dto.bio.addresses.forEach((a) => expect(Object.isFrozen(a)).toBe(false));
@@ -90,8 +90,8 @@ describe('Map Classes', () => {
         addProfile(mapper, bioProfile);
         addProfile(mapper, userProfile);
 
-        const user = getUser();
-        const dtos = mapper.mapArray([user], User, UserDto);
+        let user = getUser();
+        let dtos = mapper.mapArray([user], User, UserDto);
 
         expect(Object.isFrozen(dtos[0].bio.avatar)).toBe(false);
         dtos[0].bio.addresses.forEach((a) => expect(Object.isFrozen(a)).toBe(false));
@@ -104,8 +104,8 @@ describe('Map Classes', () => {
         addProfile(mapper, bioProfile);
         addProfile(mapper, userProfile);
 
-        const user = getUser();
-        const dto = mapper.map(user, User, UserDto);
+        let user = getUser();
+        let dto = mapper.map(user, User, UserDto);
         expect(dto.first).toEqual(user.firstName);
         expect(dto.last).toEqual(user.lastName);
         expect(dto.full).toEqual(user.firstName + ' ' + user.lastName);
@@ -121,8 +121,8 @@ describe('Map Classes', () => {
         addProfile(mapper, bioProfile);
         addProfile(mapper, userProfile);
 
-        const user = getUser();
-        const dto = mapper.map(Object.assign({}, user), User, UserDto);
+        let user = getUser();
+        let dto = mapper.map(Object.assign({}, user), User, UserDto);
         expect(dto.first).toEqual(user.firstName);
         expect(dto.last).toEqual(user.lastName);
         expect(dto.full).toEqual(user.firstName + ' ' + user.lastName);
@@ -138,8 +138,8 @@ describe('Map Classes', () => {
         addProfile(mapper, bioProfile);
         addProfile(mapper, userProfile);
 
-        const user = getUser();
-        const dtos = mapper.mapArray([user], User, UserDto);
+        let user = getUser();
+        let dtos = mapper.mapArray([user], User, UserDto);
         expect(dtos).toHaveLength(1);
         expect(dtos[0].first).toEqual(user.firstName);
         expect(dtos[0].last).toEqual(user.lastName);
@@ -156,8 +156,8 @@ describe('Map Classes', () => {
         addProfile(mapper, bioProfile);
         addProfile(mapper, userProfile);
 
-        const user = getUser();
-        const dtos = mapper.mapArray([Object.assign({}, user)], User, UserDto);
+        let user = getUser();
+        let dtos = mapper.mapArray([Object.assign({}, user)], User, UserDto);
         expect(dtos).toHaveLength(1);
         expect(dtos[0].first).toEqual(user.firstName);
         expect(dtos[0].last).toEqual(user.lastName);
