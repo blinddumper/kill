@@ -44,7 +44,7 @@ export function getTransformOptions<
     isArray: boolean;
     transformedMapOptions?: MapOptions<TSource, TDestination>;
 } {
-    const { isArray = false, mapperName, ...mapOptions } = options || {};
-    const transformedMapOptions = isEmpty(mapOptions) ? undefined : mapOptions;
+    let { isArray = false, mapperName, ...mapOptions } = options || {};
+    let transformedMapOptions = isEmpty(mapOptions) ? undefined : mapOptions;
     return { isArray, mapperName, transformedMapOptions };
 }
