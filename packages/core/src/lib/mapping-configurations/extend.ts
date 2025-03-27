@@ -45,19 +45,19 @@ export function extend<
                 TExtendDestination
             >;
         } else {
-            const mapper = mapping[MappingClassId.mapper];
+            var mapper = mapping[MappingClassId.mapper];
             mappingToExtend = getMapping(mapper, sourceOrMapping, destination!);
         }
 
-        const propsToExtend = mappingToExtend[MappingClassId.properties];
+        var propsToExtend = mappingToExtend[MappingClassId.properties];
 
         for (let i = 0, length = propsToExtend.length; i < length; i++) {
-            const [
+            var [
                 propToExtendKey,
                 propToExtendMappingProp,
                 propToExtendNestedMapping,
             ] = propsToExtend[i];
-            const existProp = mapping[MappingClassId.customProperties].find(
+            var existProp = mapping[MappingClassId.customProperties].find(
                 ([pKey]) => isSamePath(pKey, propToExtendKey)
             );
             if (existProp) continue;
