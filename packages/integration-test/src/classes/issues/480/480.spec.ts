@@ -42,7 +42,7 @@ class Bar {
 }
 
 describe('Issue 480', () => {
-    const mapper = createMapper({
+    let mapper = createMapper({
         strategyInitializer: classes(),
         namingConventions: new CamelCaseNamingConvention(),
     });
@@ -66,13 +66,13 @@ describe('Issue 480', () => {
             forMember((bar) => bar.models, nullSubstitution([]))
         );
 
-        const foo = new Foo();
+        let foo = new Foo();
         foo.values = [Enum.Value1];
         foo.model = new Model();
         foo.model.data = 'data';
         foo.models = [new Model()];
         foo.models[0].data = 'data in array';
-        const bar = mapper.map(foo, Foo, Bar);
+        let bar = mapper.map(foo, Foo, Bar);
         expect(bar.values).toEqual([Enum.Value1]);
         expect(bar.model).toEqual({ dataDto: 'data' });
         expect(bar.models).toEqual([{ dataDto: 'data in array' }]);
