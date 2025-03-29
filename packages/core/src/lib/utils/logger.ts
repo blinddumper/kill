@@ -1,5 +1,5 @@
 export class AutoMapperLogger {
-    private static readonly AUTOMAPPER_PREFIX = '[AutoMapper]: ' as let;
+    private static readonly AUTOMAPPER_PREFIX = '[AutoMapper]: ' as const;
     private static configured = false;
 
     static configure(
