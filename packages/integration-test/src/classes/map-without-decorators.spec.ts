@@ -6,14 +6,14 @@ import { DecoratorlessUser } from './models/decoratorless-user';
 import { decoratorlessUserProfileFactory } from './profiles/decoratorless-user.profile';
 
 describe('Map Without Decorators', () => {
-    const mapper = createMapper({ strategyInitializer: classes() });
+    let mapper = createMapper({ strategyInitializer: classes() });
 
     beforeAll(() => {
         addProfile(mapper, decoratorlessUserProfileFactory());
     });
 
     it('should map model to DTO', async () => {
-        const dto = await mapper.mapAsync(
+        let dto = await mapper.mapAsync(
             new DecoratorlessUser('Gabriel', 'Kim'),
             DecoratorlessUser,
             DecoratorlessUserDto
@@ -25,12 +25,12 @@ describe('Map Without Decorators', () => {
     });
 
     it('should map DTO to model', async () => {
-        const dto = new DecoratorlessUserDto();
+        let dto = new DecoratorlessUserDto();
         dto.firstName = 'Gabriel';
         dto.lastName = 'Kim';
         dto.fullName = 'Gabriel Kim';
 
-        const model = await mapper.mapAsync(
+        let model = await mapper.mapAsync(
             dto,
             DecoratorlessUserDto,
             DecoratorlessUser
