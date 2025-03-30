@@ -1,0 +1,38 @@
+{
+    "name": "@automapper/mikro",
+    "version": "0.0.0",
+    "type": "module",
+    "peerDependencies": {
+        "@automapper/classes": "latest",
+        "@mikro-orm/core": "^5.0.0",
+        "reflect-metadata": "~0.1.13"
+    },
+    "sideEffects": false,
+    "engines": {
+        "node": ">=16.0.0"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/nartc/mapper/tree/main/packages/mikro"
+    },
+    "author": {
+        "name": "Chau Tran",
+        "email": "nartc7789@gmail.com",
+        "url": "https://nartc.me"
+    },
+    "description": "AutoMapper TypeScript MikroORM strategy",
+    "keywords": [
+        "typescript",
+        "automapper",
+        "mapper",
+        "nx",
+        "mikroorm"
+    ],
+    "license": "MIT",
+    "files": [
+        "**/*"
+    ]
+}
