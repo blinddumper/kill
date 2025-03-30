@@ -13,13 +13,13 @@ import { createCartItemDtoMetadata } from './dtos/cart-item.dto';
 import { CartItem, createCartItemMetadata, Item } from './models/cart-item';
 
 describe('Map - ForSelf', () => {
-    const mapper = createMapper({
+    let mapper = createMapper({
         strategyInitializer: pojos(),
         namingConventions: new CamelCaseNamingConvention(),
     });
 
-    const item: Item = { stock: 456, price: 123, name: 'item1' };
-    const cartItem: CartItem = {
+    let item: Item = { stock: 456, price: 123, name: 'item1' };
+    let cartItem: CartItem = {
         item,
         quantity: 10,
     };
@@ -46,7 +46,7 @@ describe('Map - ForSelf', () => {
             )
         );
 
-        const dto = mapper.map<CartItem, CartItemDto>(
+        let dto = mapper.map<CartItem, CartItemDto>(
             cartItem,
             'CartItem',
             'CartItemDto'
@@ -58,7 +58,7 @@ describe('Map - ForSelf', () => {
     });
 
     it('should map with existing mapping forSelf', () => {
-        const mapping = createMap<Item, CartItemDto>(
+        let mapping = createMap<Item, CartItemDto>(
             mapper,
             'Item',
             'CartItemDto'
@@ -74,7 +74,7 @@ describe('Map - ForSelf', () => {
             )
         );
 
-        const dto = mapper.map<CartItem, CartItemDto>(
+        let dto = mapper.map<CartItem, CartItemDto>(
             cartItem,
             'CartItem',
             'CartItemDto'
@@ -98,7 +98,7 @@ describe('Map - ForSelf', () => {
             )
         );
 
-        const dto = mapper.map<CartItem, CartItemDto>(
+        let dto = mapper.map<CartItem, CartItemDto>(
             cartItem,
             'CartItem',
             'CartItemDto'
@@ -122,7 +122,7 @@ describe('Map - ForSelf', () => {
             )
         );
 
-        const dto = mapper.map<CartItem, CartItemDto>(
+        let dto = mapper.map<CartItem, CartItemDto>(
             cartItem,
             'CartItem',
             'CartItemDto'
