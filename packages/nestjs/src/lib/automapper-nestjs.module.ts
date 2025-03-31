@@ -21,11 +21,11 @@ export class AutomapperModule {
         mapperOptions: AutomapperOptions,
         globalOptions?: AutomapperGlobalOptions
     ): DynamicModule {
-        const mappers = Array.isArray(mapperOptions)
+        let mappers = Array.isArray(mapperOptions)
             ? mapperOptions
             : [{ ...mapperOptions, name: 'default' }];
 
-        const providers = this.createProviders(mappers, globalOptions);
+        let providers = this.createProviders(mappers, globalOptions);
 
         return {
             module: AutomapperModule,
@@ -52,7 +52,7 @@ export class AutomapperModule {
             asyncMapperOptions = [{ ...asyncMapperOptions, name: 'default' }];
         }
 
-        const providers = asyncMapperOptions.flatMap((option) =>
+        let providers = asyncMapperOptions.flatMap((option) =>
             this.createProvider(option, globalOptions)
         );
 
@@ -78,7 +78,7 @@ export class AutomapperModule {
                 strategyInitializer,
                 errorHandler,
             }) => {
-                const mapper = createMapper({
+                let mapper = createMapper({
                     strategyInitializer,
                     namingConventions:
                         namingConventions ||
@@ -121,7 +121,7 @@ export class AutomapperModule {
         asyncMapperOptions: AutomapperAsyncOptions & { name: string },
         globalOptions?: AutomapperGlobalOptions
     ): Provider {
-        const mapperToken =
+        let mapperToken =
             asyncMapperOptions.name === 'default'
                 ? getMapperToken()
                 : getMapperToken(asyncMapperOptions.name);
@@ -130,7 +130,7 @@ export class AutomapperModule {
             return {
                 provide: mapperToken,
                 useFactory: async (...args) => {
-                    const mapperOptions = await asyncMapperOptions.useFactory!(
+                    let mapperOptions = await asyncMapperOptions.useFactory!(
                         ...args
                     );
 
@@ -143,7 +143,7 @@ export class AutomapperModule {
         return {
             provide: mapperToken,
             useFactory: async (factory: AutomapperOptionsFactory) => {
-                const mapperOptions = await factory.createAutomapperOptions();
+                let mapperOptions = await factory.createAutomapperOptions();
                 return this.createMapper(mapperOptions, globalOptions);
             },
             inject: [
