@@ -12,12 +12,12 @@ export function inheritAutoMapMetadata(
     isPropertyInherited: (key: string) => boolean = () => true
 ) {
     try {
-        let [parentClassMetadataList] = getMetadataList(parentClass);
+        const [parentClassMetadataList] = getMetadataList(parentClass);
         if (!parentClassMetadataList.length) {
             return;
         }
 
-        let [existingMetadataList] = getMetadataList(
+        const [existingMetadataList] = getMetadataList(
             targetClass as Constructor
         );
         Reflect.defineMetadata(
@@ -43,8 +43,8 @@ export function inheritPropertyInitializers(
     isPropertyInherited: (key: string) => boolean = () => true
 ) {
     try {
-        let tempInstance = new sourceClass();
-        let propertyNames = Object.getOwnPropertyNames(tempInstance);
+        const tempInstance = new sourceClass();
+        const propertyNames = Object.getOwnPropertyNames(tempInstance);
 
         propertyNames
             .filter(
