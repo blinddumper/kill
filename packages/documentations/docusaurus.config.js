@@ -1,11 +1,11 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-let lightCodeTheme = require('prism-react-renderer/themes/github');
-let darkCodeTheme = require('prism-react-renderer/themes/oceanicNext');
+const lightCodeTheme = require('prism-react-renderer/themes/github');
+const darkCodeTheme = require('prism-react-renderer/themes/oceanicNext');
 
 /** @type {import('@docusaurus/types').Config} */
-let config = {
+const config = {
     title: 'AutoMapper TypeScript',
     tagline: 'An object-object mapping solution by convention in TypeScript',
     url: 'https://automapperts.netlify.app/',
