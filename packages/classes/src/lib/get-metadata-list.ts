@@ -38,7 +38,7 @@ export function getMetadataList(model: Constructor): [
             : []
     ).concat(Reflect.getMetadata(AUTOMAP_PROPERTIES_METADATA_KEY, model) || []);
 
-    const metadataFactoryFn = model[AUTOMAPPER_METADATA_FACTORY_KEY];
+    var metadataFactoryFn = model[AUTOMAPPER_METADATA_FACTORY_KEY];
     if (metadataFactoryFn) {
         metadataList = metadataList.concat(
             metadataFactoryFn() || ([] as MetadataList)
@@ -47,10 +47,10 @@ export function getMetadataList(model: Constructor): [
     return metadataList.reduce(
         (result, [propertyKey, { type, depth, isGetterOnly }]) => {
             // can be [type] or type
-            const meta = type();
-            const isArray = Array.isArray(meta);
+            var meta = type();
+            var isArray = Array.isArray(meta);
 
-            const trueMeta = isArray ? meta[0] : meta;
+            var trueMeta = isArray ? meta[0] : meta;
 
             if (
                 !isDateConstructor(trueMeta) &&
