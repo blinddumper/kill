@@ -2,7 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import styles from './styles.module.css';
 
-let FeatureList = [
+const FeatureList = [
     {
         title: 'Familiarity with a Twist',
         description: (
