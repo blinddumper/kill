@@ -19,11 +19,11 @@ import { setMutate } from '../utils/set';
 export function defaultApplyMetadata(
     strategy: MappingStrategy<MetadataIdentifier>
 ): ApplyMetadataFn {
-    const mapper = strategy.mapper;
-    const metadataMap = getMetadataMap(mapper);
-    const metadataObjectMap = getMetadataObjectMap(mapper);
-    const recursiveCountMap = getRecursiveCount(mapper);
-    const recursiveDepthMap = getRecursiveDepth(mapper);
+    var mapper = strategy.mapper;
+    var metadataMap = getMetadataMap(mapper);
+    var metadataObjectMap = getMetadataObjectMap(mapper);
+    var recursiveCountMap = getRecursiveCount(mapper);
+    var recursiveDepthMap = getRecursiveDepth(mapper);
 
     function applyMetadata(
         model: MetadataIdentifier,
@@ -32,10 +32,10 @@ export function defaultApplyMetadata(
         selfReference = false
     ) {
         // get the metadata of the model
-        const metadata = metadataMap.get(model);
+        var metadata = metadataMap.get(model);
 
         // instantiate a model
-        const instance = {};
+        var instance = {};
 
         // if metadata is empty, return the instance early
         if (isEmpty(metadata) || !metadata) {
@@ -45,15 +45,15 @@ export function defaultApplyMetadata(
         // walking the metadata
         for (let i = 0, length = metadata.length; i < length; i++) {
             // destructure the metadata
-            const key = metadata[i][MetadataClassId.propertyKeys];
-            const metaFn = metadata[i][MetadataClassId.metaFn];
-            const isArray = metadata[i][MetadataClassId.isArray];
+            var key = metadata[i][MetadataClassId.propertyKeys];
+            var metaFn = metadata[i][MetadataClassId.metaFn];
+            var isArray = metadata[i][MetadataClassId.isArray];
 
             /**
              * in V8, AutoMapper does not instantiate a new model on applying metadata anymore.
              * Hence, isGetterOnly seems to be obsolete.
              */
-            const isGetterOnly = metadata[i][MetadataClassId.isGetterOnly];
+            var isGetterOnly = metadata[i][MetadataClassId.isGetterOnly];
             // skip getter if is applying metadata to a destination (because we will be setting data
             // on the destination. Getter only cannot be set
             if (isGetterOnly && as === MetadataObjectMapClassId.asDestination) {
@@ -61,7 +61,7 @@ export function defaultApplyMetadata(
             }
 
             // call the meta fn to get the metaResult of the current key
-            const metaResult = metaFn();
+            var metaResult = metaFn();
 
             // if the metadata is an Array, then assign an empty array
             if (isArray) {
@@ -84,8 +84,8 @@ export function defaultApplyMetadata(
 
             // get depth and count of the current key on the current model
             // Eg: Foo {bar: Bar}, model here is Foo and key is bar
-            const depth = getRecursiveValue(recursiveDepthMap, model, key);
-            const count = getRecursiveValue(recursiveCountMap, model, key) || 0;
+            var depth = getRecursiveValue(recursiveDepthMap, model, key);
+            var count = getRecursiveValue(recursiveCountMap, model, key) || 0;
 
             // if no depth, just instantiate with new keyword without recursive
             if (depth === 0) {
@@ -105,10 +105,10 @@ export function defaultApplyMetadata(
 
             // increment the count and recursively call instantiate
             setRecursiveValue(recursiveCountMap, model, key, count + 1);
-            const childMetadataObjectMap = metadataObjectMap.get(
+            var childMetadataObjectMap = metadataObjectMap.get(
                 metaResult as MetadataIdentifier
             );
-            const childMetadata =
+            var childMetadata =
                 childMetadataObjectMap?.[as] ||
                 applyMetadata(
                     metaResult as MetadataIdentifier,
