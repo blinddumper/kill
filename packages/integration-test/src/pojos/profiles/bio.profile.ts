@@ -8,7 +8,7 @@ import {
 } from '../dtos/bio.dto';
 import { Bio, createBioMetadata, PascalBio, SnakeBio } from '../models/bio';
 
-let dateToStringConverter: Converter<Date, string> = {
+const dateToStringConverter: Converter<Date, string> = {
     convert(source: Date): string {
         return source.toDateString();
     },
