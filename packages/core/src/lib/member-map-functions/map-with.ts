@@ -28,7 +28,7 @@ export function mapWith<
     return [
         TransformationType.MapWith,
         (source, mapper, options) => {
-            const sourceValue = withSourceValue(source);
+            let sourceValue = withSourceValue(source);
 
             if (Array.isArray(sourceValue)) {
                 return mapper.mapArray(
