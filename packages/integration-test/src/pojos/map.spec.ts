@@ -13,7 +13,7 @@ import { userProfile } from './profiles/user.profile';
 import { getUser } from './utils/get-user';
 
 describe('Map Pojos', () => {
-    let mapper = createMapper({
+    const mapper = createMapper({
         strategyInitializer: pojos(),
         namingConventions: new CamelCaseNamingConvention(),
     });
@@ -24,22 +24,22 @@ describe('Map Pojos', () => {
     });
 
     it('should return null if source is null', () => {
-        let dto = mapper.map(null, 'User', 'UserDto');
+        const dto = mapper.map(null, 'User', 'UserDto');
         expect(dto).toEqual(null);
     });
 
     it('should return undefined if source is undefined', () => {
-        let dto = mapper.map(undefined, 'User', 'UserDto');
+        const dto = mapper.map(undefined, 'User', 'UserDto');
         expect(dto).toEqual(undefined);
     });
 
     it('should return [] if mapped with []', () => {
-        let dtos = mapper.mapArray([], 'User', 'UserDto');
+        const dtos = mapper.mapArray([], 'User', 'UserDto');
         expect(dtos).toEqual([]);
     });
 
     it('should throw error if mapped without the mapping', () => {
-        let user = getUser();
+        const user = getUser();
         expect(() => mapper.map(user, 'User', 'UserDto')).toThrow();
     });
 
@@ -49,8 +49,8 @@ describe('Map Pojos', () => {
         addProfile(mapper, bioProfile);
         addProfile(mapper, userProfile);
 
-        let user = getUser();
-        let dto = mapper.map<User, UserDto>(user, 'User', 'UserDto');
+        const user = getUser();
+        const dto = mapper.map<User, UserDto>(user, 'User', 'UserDto');
         expect(dto.first).toEqual(user.firstName);
         expect(dto.last).toEqual(user.lastName);
         expect(dto.full).toEqual(user.firstName + ' ' + user.lastName);
@@ -66,8 +66,8 @@ describe('Map Pojos', () => {
         addProfile(mapper, bioProfile);
         addProfile(mapper, userProfile);
 
-        let user = getUser();
-        let dtos = mapper.mapArray<User, UserDto>([user], 'User', 'UserDto');
+        const user = getUser();
+        const dtos = mapper.mapArray<User, UserDto>([user], 'User', 'UserDto');
         expect(dtos).toHaveLength(1);
         expect(dtos[0].first).toEqual(user.firstName);
         expect(dtos[0].last).toEqual(user.lastName);
