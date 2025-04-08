@@ -16,7 +16,7 @@ import { serializeEntity } from './serialize-entity';
 export function mikro(
     options: MappingStrategyInitializerOptions = {}
 ): MappingStrategyInitializer<Constructor> {
-    let mergedOptions = {
+    const mergedOptions = {
         ...defaultStrategyInitializerOptions,
         destinationConstructor: (
             _: Dictionary<object>,
@@ -33,7 +33,7 @@ export function mikro(
             source: TSource,
             mapping: Mapping<TSource, TDestination>
         ) => {
-            let [sourceMetadataObject] =
+            const [sourceMetadataObject] =
                 mapping[MappingClassId.identifierMetadata];
             return serializeEntity(source, sourceMetadataObject) as TSource;
         };
