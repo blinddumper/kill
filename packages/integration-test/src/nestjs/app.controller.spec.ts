@@ -9,14 +9,14 @@ import { AppService } from './app.service';
 describe(AppController.name, () => {
     let app: INestApplication;
 
-    var mockedAppService = {
+    const mockedAppService = {
         getData: jest.fn(),
         getUserDto: jest.fn(),
         getRawUser: jest.fn(),
     };
 
     beforeAll(async () => {
-        var moduleRef = await Test.createTestingModule({
+        const moduleRef = await Test.createTestingModule({
             imports: [AppModule],
         })
             .overrideProvider(AppService)
