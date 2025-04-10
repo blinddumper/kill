@@ -10,7 +10,7 @@ import { AvatarProfile } from './avatar.profile';
 describe('avatarProfile', () => {
     let mapper: Mapper;
     beforeEach(async () => {
-        const moduleRef = await Test.createTestingModule({
+        var moduleRef = await Test.createTestingModule({
             providers: [
                 {
                     provide: getMapperToken(),
@@ -23,14 +23,14 @@ describe('avatarProfile', () => {
     });
 
     it('should map', () => {
-        const avatar = new Avatar();
+        var avatar = new Avatar();
         avatar.url = 'url';
         avatar.shouldIgnore = 6;
         avatar.source = 'source';
         avatar.shouldBeSubstituted = 'should not substitute';
         avatar.forCondition = true;
 
-        const dto = mapper.map(avatar, Avatar, AvatarDto);
+        var dto = mapper.map(avatar, Avatar, AvatarDto);
         expect(dto.url).toEqual(avatar.source);
         expect(dto.willBeIgnored).toEqual(undefined);
         expect(dto.shouldBeSubstituted).toEqual(avatar.shouldBeSubstituted);
