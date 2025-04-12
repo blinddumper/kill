@@ -12,7 +12,7 @@ import type { Model } from 'sequelize';
 export function sequelize(
     options: MappingStrategyInitializerOptions = defaultStrategyInitializerOptions
 ): MappingStrategyInitializer<Constructor> {
-    let mergedOptions = {
+    const mergedOptions = {
         ...defaultStrategyInitializerOptions,
         destinationConstructor: (
             _: Dictionary<object>,
