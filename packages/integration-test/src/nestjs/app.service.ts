@@ -15,7 +15,7 @@ export class AppService {
     }
 
     getUserDto() {
-        const user = getUser();
+        let user = getUser();
         return this.mapper.map(user, User, UserDto);
     }
 
@@ -24,7 +24,7 @@ export class AppService {
     }
 
     getFooVm() {
-        const foo = new Foo();
+        let foo = new Foo();
         foo.foo = 'testing';
         foo.bar = new Bar();
         foo.bar.bar = 'testing bar';
