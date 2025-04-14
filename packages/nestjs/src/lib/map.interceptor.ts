@@ -20,7 +20,7 @@ import {
     transformArray,
 } from './utils/transform';
 
-export let MapInterceptor: <
+export const MapInterceptor: <
     TSource extends Dictionary<TSource>,
     TDestination extends Dictionary<TDestination>
 >(
@@ -43,7 +43,7 @@ function createMapInterceptor<
         TDestination
     >
 ): new (...args: unknown[]) => NestInterceptor {
-    let { isArray, mapperName, transformedMapOptions } =
+    const { isArray, mapperName, transformedMapOptions } =
         getTransformOptions(options);
 
     class MixinMapInterceptor implements NestInterceptor {
