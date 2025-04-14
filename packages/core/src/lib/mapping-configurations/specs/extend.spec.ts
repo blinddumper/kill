@@ -13,9 +13,9 @@ function getMappingProperty(path = 'foo') {
 
 describe(extend.name, () => {
     it('should extend another mapping', () => {
-        const mapping = [] as unknown as Mapping;
+        let mapping = [] as unknown as Mapping;
         mapping[MappingClassId.customProperties] = [];
-        const mappingToExtend = [] as unknown as Mapping;
+        let mappingToExtend = [] as unknown as Mapping;
         mappingToExtend[MappingClassId.properties] = [getMappingProperty()];
 
         extend(mappingToExtend)(mapping);
@@ -23,9 +23,9 @@ describe(extend.name, () => {
     });
 
     it('should skip existing mapping properties on extended mapping', () => {
-        const mapping = [] as unknown as Mapping;
+        let mapping = [] as unknown as Mapping;
         mapping[MappingClassId.customProperties] = [getMappingProperty()];
-        const mappingToExtend = [] as unknown as Mapping;
+        let mappingToExtend = [] as unknown as Mapping;
         mappingToExtend[MappingClassId.properties] = [
             getMappingProperty(),
             getMappingProperty('bar'),
