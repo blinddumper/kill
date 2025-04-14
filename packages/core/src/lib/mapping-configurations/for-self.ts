@@ -36,16 +36,16 @@ export function forSelf<
 
     return (mapping) => {
         if (selfMapping == null) {
-            const [, destinationIdentifier] =
+            var [, destinationIdentifier] =
                 mapping[MappingClassId.identifiers];
-            const mapper = mapping[MappingClassId.mapper];
-            const strategy = getStrategy(mapper);
+            var mapper = mapping[MappingClassId.mapper];
+            var strategy = getStrategy(mapper);
             // turn string into symbol for identifier
-            const sourceIdentifier: MetadataIdentifier<TSource> =
+            var sourceIdentifier: MetadataIdentifier<TSource> =
                 typeof sourceOrMapping === 'string'
                     ? Symbol.for(sourceOrMapping)
                     : (sourceOrMapping as MetadataIdentifier<TSource>);
-            const strategyMetadataMap =
+            var strategyMetadataMap =
                 strategy.retrieveMetadata(sourceIdentifier);
 
             strategyMetadataMap.forEach((metadataList, identifier) => {
@@ -59,10 +59,10 @@ export function forSelf<
             );
         }
 
-        const selfMapProperties = selfMapping[MappingClassId.properties];
+        var selfMapProperties = selfMapping[MappingClassId.properties];
 
         for (let i = 0, length = selfMapProperties.length; i < length; i++) {
-            const mapProperty = selfMapProperties[i];
+            var mapProperty = selfMapProperties[i];
             if (
                 mapping[MappingClassId.properties].some((property) =>
                     isPrimitiveArrayEqual(
@@ -73,7 +73,7 @@ export function forSelf<
             ) {
                 continue;
             }
-            const transformation: MappingTransformation =
+            var transformation: MappingTransformation =
                 mapProperty[MappingPropertiesClassId.mappingProperty][
                     MappingPropertyClassId.transformation
                 ];
