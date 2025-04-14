@@ -103,7 +103,7 @@ export function createMapper({
             sourceIdentifier as ModelIdentifier<TDestination>;
 
         if (destinationIdentifierOrOptions && !options) {
-            var typeofDestinationOrOptions =
+            const typeofDestinationOrOptions =
                 typeof destinationIdentifierOrOptions;
             if (
                 typeofDestinationOrOptions === 'string' ||
@@ -230,14 +230,14 @@ Mapper {} is an empty Object as a Proxy. The following methods are available to 
                         if (sourceObject == null)
                             return sourceObject as TDestination;
 
-                        var { destinationIdentifier, mapOptions } =
+                        const { destinationIdentifier, mapOptions } =
                             getOptions(
                                 sourceIdentifier,
                                 destinationIdentifierOrOptions,
                                 options
                             );
 
-                        var mapping = getMapping(
+                        const mapping = getMapping(
                             receiver,
                             sourceIdentifier,
                             destinationIdentifier
@@ -245,7 +245,7 @@ Mapper {} is an empty Object as a Proxy. The following methods are available to 
 
                         sourceObject = strategy.preMap(sourceObject, mapping);
 
-                        var destination = mapReturn(
+                        const destination = mapReturn(
                             mapping,
                             sourceObject,
                             mapOptions || {}
@@ -274,7 +274,7 @@ Mapper {} is an empty Object as a Proxy. The following methods are available to 
                             | MapOptions<TSource, TDestination>,
                         options?: MapOptions<TSource, TDestination>
                     ): Promise<TDestination> => {
-                        var result = receiver['map'](
+                        const result = receiver['map'](
                             sourceObject,
                             sourceIdentifier,
                             destinationIdentifierOrOptions,
@@ -300,20 +300,20 @@ Mapper {} is an empty Object as a Proxy. The following methods are available to 
                     ): TDestination[] => {
                         if (!sourceArray.length) return [];
 
-                        var { destinationIdentifier, mapOptions } =
+                        const { destinationIdentifier, mapOptions } =
                             getOptions(
                                 sourceIdentifier,
                                 destinationIdentifierOrOptions,
                                 options
                             );
 
-                        var mapping = getMapping(
+                        const mapping = getMapping(
                             receiver,
                             sourceIdentifier,
                             destinationIdentifier
                         );
 
-                        var { beforeMap, afterMap, extraArgs } =
+                        const { beforeMap, afterMap, extraArgs } =
                             (mapOptions || {}) as MapOptions<
                                 TSource[],
                                 TDestination[]
@@ -323,7 +323,7 @@ Mapper {} is an empty Object as a Proxy. The following methods are available to 
                             beforeMap(sourceArray, []);
                         }
 
-                        var destinationArray: TDestination[] = [];
+                        const destinationArray: TDestination[] = [];
 
                         for (
                             let i = 0, length = sourceArray.length;
@@ -336,7 +336,7 @@ Mapper {} is an empty Object as a Proxy. The following methods are available to 
                                 mapping
                             );
 
-                            var destination = mapReturn(
+                            const destination = mapReturn(
                                 mapping,
                                 sourceObject,
                                 {
@@ -380,7 +380,7 @@ Mapper {} is an empty Object as a Proxy. The following methods are available to 
                             | MapOptions<TSource[], TDestination[]>,
                         options?: MapOptions<TSource[], TDestination[]>
                     ) => {
-                        var result = receiver['mapArray'](
+                        const result = receiver['mapArray'](
                             sourceArray,
                             sourceIdentifier,
                             destinationIdentifierOrOptions,
@@ -407,14 +407,14 @@ Mapper {} is an empty Object as a Proxy. The following methods are available to 
                     ) => {
                         if (sourceObject == null) return;
 
-                        var { destinationIdentifier, mapOptions } =
+                        const { destinationIdentifier, mapOptions } =
                             getOptions(
                                 sourceIdentifier,
                                 destinationIdentifierOrOptions,
                                 options
                             );
 
-                        var mapping = getMapping(
+                        const mapping = getMapping(
                             receiver,
                             sourceIdentifier,
                             destinationIdentifier
@@ -478,20 +478,20 @@ Mapper {} is an empty Object as a Proxy. The following methods are available to 
                     ) => {
                         if (!sourceArray.length) return;
 
-                        var { destinationIdentifier, mapOptions } =
+                        const { destinationIdentifier, mapOptions } =
                             getOptions(
                                 sourceIdentifier,
                                 destinationIdentifierOrOptions,
                                 options
                             );
 
-                        var mapping = getMapping(
+                        const mapping = getMapping(
                             receiver,
                             sourceIdentifier,
                             destinationIdentifier
                         );
 
-                        var { beforeMap, afterMap, extraArgs } =
+                        const { beforeMap, afterMap, extraArgs } =
                             (mapOptions || {}) as MapOptions<
                                 TSource[],
                                 TDestination[]
