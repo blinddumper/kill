@@ -9,7 +9,7 @@ import {
 } from '@automapper/core';
 
 describe('Map - Chained Mapping', () => {
-    let mapper = createMapper({
+    const mapper = createMapper({
         strategyInitializer: classes(),
         namingConventions: new CamelCaseNamingConvention(),
     });
@@ -54,7 +54,7 @@ describe('Map - Chained Mapping', () => {
             A,
             C,
             constructUsing((sourceObject) => {
-                let intermediate = mapper.map(sourceObject, A, B);
+                const intermediate = mapper.map(sourceObject, A, B);
                 return mapper.map(intermediate, B, C);
             }),
             forMember(
@@ -63,10 +63,10 @@ describe('Map - Chained Mapping', () => {
             )
         );
 
-        let a = new A();
+        const a = new A();
         a.a = 'value';
 
-        let c = mapper.map(a, A, C);
+        const c = mapper.map(a, A, C);
         console.log(c);
         expect(c.c).toEqual('value!!!!!!');
         expect(c.extraC).toEqual('value extra!!');
