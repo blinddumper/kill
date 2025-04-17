@@ -6,7 +6,7 @@ export function getPath(
         [NamingConvention, NamingConvention]
     >
 ): string[] {
-    const keyParts = path
+    var keyParts = path
         .map((s) =>
             s
                 .split(destinationNamingConvention.splittingExpression)
@@ -23,14 +23,14 @@ export function getFlatteningPaths(
     srcPath: string[],
     namingConventions: [NamingConvention, NamingConvention]
 ): string[] {
-    const [sourceNamingConvention] = namingConventions;
-    const splitSourcePaths: string[] = ([] as string[]).concat(
+    var [sourceNamingConvention] = namingConventions;
+    var splitSourcePaths: string[] = ([] as string[]).concat(
         ...srcPath.map((s) =>
             s.split(sourceNamingConvention.splittingExpression).filter(Boolean)
         )
     );
 
-    const [first, ...paths] = splitSourcePaths.slice(
+    var [first, ...paths] = splitSourcePaths.slice(
         0,
         splitSourcePaths.length - 1
     );
@@ -57,11 +57,11 @@ export function getFlatteningPaths(
         return srcPath;
     }
 
-    const restPaths = splitSourcePaths.slice(
+    var restPaths = splitSourcePaths.slice(
         stopIndex + 1,
         splitSourcePaths.length + 1
     );
-    const transformedRestPaths =
+    var transformedRestPaths =
         sourceNamingConvention.transformPropertyName(restPaths);
 
     if (
